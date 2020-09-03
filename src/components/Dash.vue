@@ -7,7 +7,7 @@
     <sidebar :user="user" />
 
     <!-- Content Wrapper. Contains page content -->
-    <div  class="content-wrapper">
+    <div style="background: rgba(0, 0, 0, 0.17);" class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
@@ -72,7 +72,6 @@ export default {
 }
 .wrapper.fixed_layout .content-wrapper {
   padding-top: 50px;
-  background: rgba(0, 0, 0, 0.17);
 }
 .wrapper.fixed_layout .main-sidebar {
   position: fixed;
