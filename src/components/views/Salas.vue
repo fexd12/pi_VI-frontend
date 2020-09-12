@@ -18,7 +18,7 @@
     </b-modal>
 
     <main role="main" class="container">
-      <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <div class="my-3 p-3 rounded shadow-sm" style="background:rgba(0, 0, 0, 0.200)">
         <div class="media text-muted pt-3">
           <div class="container">
             <!-- No data message -->

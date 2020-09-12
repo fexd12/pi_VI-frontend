@@ -7,7 +7,7 @@
     <sidebar :user="user" />
 
     <!-- Content Wrapper. Contains page content -->
-    <div style="background: rgba(0, 0, 0, 0.17);" class="content-wrapper">
+    <div style="background: rgba(0, 0, 0, 0.002);" class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
