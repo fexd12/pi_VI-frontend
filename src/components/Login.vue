@@ -34,39 +34,29 @@
                 </p>
 
                 <form method="post" action="">
-
-                {{ form.hidden_tag() }}
-
-                <div class="input-group mb-3">
-                    {{ form.username(placeholder="Username", class="form-control") }}
-                    <div class="input-group-append">
-                    <div class="input-group-text">
+                    <div class="form-group">
+                        <label for="email"> Email</label>
+                        <input type="email" class="form-group" id="email"  placeholder="Insira o Email">
                         <span class="fas fa-envelope"></span>
                     </div>
-                    </div>
-                </div>
-                <div class="input-group mb-3">
-                    {{ form.password(placeholder="Password", class="form-control", type="password") }}
-                    <div class="input-group-append">
-                    <div class="input-group-text">
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" class="form-group" id="password" placeholder="Insira a Senha">
                         <span class="fas fa-lock"></span>
                     </div>
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-primary">Concluir</button>
+
                 <div class="row">
                     <div class="col-8">
                     <div class="icheck-primary">
                         <input type="checkbox" id="remember">
-                        <label for="remember">
-                        Remember Me
-                        </label>
+                        <label for="remember">Cadastrar</label>
                     </div>
                     </div>
-                    <!-- /.col -->
                     <div class="col-4">
-                    <button type="submit" name="login" class="btn btn-primary btn-block">Sign In</button>
+                    <button type="submit" name="login" class="btn btn-primary btn-block">Entrar</button>
                     </div>
-                    <!-- /.col -->
+
                 </div>
                 </form>
 
