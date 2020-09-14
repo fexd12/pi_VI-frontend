@@ -6,11 +6,11 @@
         <link rel="icon" href="/static/assets/favicon.ico" type="image/x-icon">
 
         <title>
-            Flask AdminLTE - {% block title %}{% endblock %} | AppSeed
+
         </title> 
 
         <!-- Specific Page CSS goes HERE  -->  
-        {% block stylesheets %}{% endblock stylesheets %}
+
         </head>
 
                 
@@ -26,11 +26,8 @@
             <div class="card-body login-card-body">
 
                     <p class="login-box-msg">
-                    {% if msg %}
                         {{ msg | safe }}
-                    {% else %}
                         Use default credentials: <strong>test / pass</strong>
-                    {% endif %}
                 </p>
 
                 <form method="post" action="">
