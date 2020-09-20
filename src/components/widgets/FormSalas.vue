@@ -37,6 +37,7 @@ export default {
         id: this.content.id,
         nome: this.content.nome,
         quantidade: this.content.quantidade,
+        sala: this.content.sala
       };
       this.$emit("input", retorno);
     },

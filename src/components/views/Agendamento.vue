@@ -6,12 +6,7 @@
         <div class="media text-muted pt-3">
           <div class="container">
             <b-form class="row">
-              <b-form-group
-                id="input-group-1"
-                label="Data do Agendamento:"
-                label-for="input-1"
-                class="col"
-              >
+              <b-form-group id="input-group-1" label="Data do Agendamento:" label-for="input-1">
                 <Datetime
                   v-model="ativoAtual.data"
                   type="date"
@@ -22,12 +17,7 @@
                 ></Datetime>
               </b-form-group>
 
-              <b-form-group
-                id="input-group-2"
-                label="Horário de início:"
-                label-for="input-2"
-                class="col"
-              >
+              <b-form-group id="input-group-2" label="Horário de início:" label-for="input-2">
                 <Datetime
                   v-model="ativoAtual.horaInicio"
                   type="time"
@@ -37,12 +27,7 @@
                 ></Datetime>
               </b-form-group>
 
-              <b-form-group
-                id="input-group-3"
-                label="Horário de término:"
-                label-for="input-3"
-                class="col"
-              >
+              <b-form-group id="input-group-3" label="Horário de término:" label-for="input-3">
                 <Datetime
                   v-model="ativoAtual.horaFinal"
                   type="time"
@@ -51,10 +36,20 @@
                   placeholder="Selecione o horario de termino"
                 ></Datetime>
               </b-form-group>
+
+              <b-form-group id="input-group-4" label="Tipos de Salas:" label-for="input-4" class="col">
+                <b-form-select
+                  class="mb-3 form-control"
+                  v-model="ativoAtual.salas"
+                  id="input-4"
+                  :options="salas"
+                  required
+                ></b-form-select>
+              </b-form-group>
             </b-form>
 
             <div class="form-group center">
-              <b-button type="submit" class="btn btn-primary" v-on:click="carregaTabela">
+              <b-button type="submit" class="btn btn-success" v-on:click="carregaTabela">
                 <span>Buscar</span>
               </b-button>
             </div>
@@ -115,29 +110,35 @@ import "vue-datetime/dist/vue-datetime.css";
 export default {
   name: "Agendamento",
   components: {
-    Datetime
+    Datetime,
   },
   data: () => {
     return {
+      content: {},
       ativoAtual: {
         data: "",
         horaInicio: "",
         horaFinal: "",
         name: "",
-        sala: ""
+        sala: "",
       },
       ativos: [],
       fields: [
         {
           key: "nome",
-          label: "Nome da Sala"
+          label: "Nome da Sala",
         },
         {
           key: "quantidade",
-          label: "Quantidade de Cadeiras"
-        }
+          label: "Quantidade de Cadeiras",
+        },
+        {
+          key: "sala",
+          label: "Tipo de Sala",
+        },
       ],
-      users: [{ value: null, text: "Selecione um usuario" }]
+      users: [{ value: null, text: "Selecione um usuario" }],
+     salas: [{value:'0', text:'Laboratório de Computadores'}, {value:'1', text:'Laboratório de Digital'}, {value:'2', text:'Sala com Projetor'}, {value:'3', text:'Estúdio de Imagem'}, {value:'4', text:'Estúdio de Som'}]
     };
   },
   methods: {
@@ -153,7 +154,7 @@ export default {
       let payload = {
         hora_inicio: this.ativoAtual.horaInicio,
         hora_final: this.ativoAtual.horaFinal,
-        data: this.ativoAtual.data
+        data: this.ativoAtual.data,
       };
       try {
         let dados = await this.$http.post(
@@ -168,10 +169,10 @@ export default {
     async carregaUsuarios() {
       // this.users.splice(0, this.users.length);
       let dados = await this.$http.get(`${this.$baseUrl}/userstag/`, {});
-      dados.data.forEach(element => {
+      dados.data.forEach((element) => {
         this.users.push({
           value: element.id,
-          text: element.name
+          text: element.name,
         });
       });
     },
@@ -182,7 +183,7 @@ export default {
         horaInicio: this.ativoAtual.horaInicio,
         horaFinal: this.ativoAtual.horaFinal,
         name: this.ativoAtual.name,
-        sala: this.ativoAtual.sala
+        sala: this.ativoAtual.sala,
       };
       try {
         await this.$http.post(`${this.$baseUrl}/agendamento/`, payload);
@@ -193,13 +194,34 @@ export default {
     },
     beforeSalvar(x) {
       this.ativoAtual.sala = x.id;
-    }
+    },
   },
   async mounted() {
     await this.carregaUsuarios();
-  }
+  },
 };
 </script>
 
 <style>
+#input-group-1 {
+  margin-left: 30px;
+  margin-block-start: 1px;
+}
+
+#input-group-2 {
+  margin-left: 50px;
+  margin-block-start: 1px;
+}
+
+#input-group-3 {
+  margin-left: 50px;
+  margin-block-start: 1px;
+}
+
+#input-group-4 {
+  margin-left: 30px;
+  margin-block-start: 1px;
+
+
+}
 </style>
