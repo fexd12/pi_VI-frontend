@@ -1,9 +1,9 @@
 <template>
   <div>
     <div>
-      <b-button class="btn btn-primary" v-b-modal.criaUserTag>
+      <!-- <b-button class="btn btn-primary" v-b-modal.criaUserTag>
         <span>Adicionar</span>
-      </b-button>
+      </b-button> -->
     </div>
 
     <main role="main" class="container">
@@ -53,15 +53,15 @@ export default {
       fields: [
         {
           key: "name",
-          label: "nome"
+          label: "Nome"
         },
         {
-          key: "tag",
-          label: "tag"
+          key: "tipoUsuario",
+          label: "Tipo de Usuario"
         },
         {
           key: "acesso",
-          label: "tipo acesso"
+          label: "Tipo de Acesso"
         }
       ]
     };

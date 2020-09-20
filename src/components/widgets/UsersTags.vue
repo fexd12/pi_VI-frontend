@@ -29,6 +29,7 @@ export default {
         tag: this.value.tag,
         acesso: this.value.acesso
       },
+  
       users: [{value:null,text:'Selecione um usuario'}],
       tags: [{value:null,text:'Selecione uma tag'}],
       acessos: [{value:'1',text:'acesso full'},

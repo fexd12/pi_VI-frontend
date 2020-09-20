@@ -7,7 +7,7 @@
     <sidebar :user="user" />
 
     <!-- Content Wrapper. Contains page content -->
-    <div style="background: rgba(0, 0, 0, 0.002);" class="content-wrapper">
+    <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
@@ -37,12 +37,14 @@
 // import DashFooter from './layout/DashFooter'
 import DashHeader from "./layout/DashHeader";
 import Sidebar from "./layout/Sidebar";
+import UserMenu from './layout/UserMenu'
 
 export default {
   name: "Dash",
   components: {
     DashHeader,
-    Sidebar
+    Sidebar,
+    UserMenu
   },
   data: function() {
     return {
@@ -78,7 +80,7 @@ export default {
   height: 100vh;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1331) {
   .wrapper.hide_logo .main-header .logo {
     display: none;
   }

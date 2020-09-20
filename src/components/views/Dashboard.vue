@@ -5,7 +5,7 @@
       <div class="col-lg-3">
         <template>
           <div class="info-box">
-            <span :class="['info-box-icon', 'bg-yellow']">
+            <span :class="['info-box-icon', 'bg-blue']">
               <i :class="['ion', 'ion-ios-people-outline']"></i>
             </span>
             <div class="info-box-content">
@@ -18,11 +18,37 @@
       <div class="col-lg-3">
         <template>
           <div class="info-box">
-            <span :class="['info-box-icon', 'bg-yellow']">
-              <i :class="['ion', 'ion-ios-people-outline']"></i>
+            <span :class="['info-box-icon', 'bg-red']">
+              <i :class="['ion', 'ion-settings']"></i>
             </span>
             <div class="info-box-content">
-              <span :class="'text'">{{'Tags cadastradas'}}</span>
+              <span :class="'text'">{{'Salas em Manutenção '}}</span>
+              <span :class="'info-box-number'">{{tags.soma}}</span>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div class="col-lg-3">
+        <template>
+          <div class="info-box">
+            <span :class="['info-box-icon', 'bg-green']">
+              <i :class="['ion', 'ion-checkmark-round']"></i>
+            </span>
+            <div class="info-box-content">
+              <span :class="'text'">{{'Salas Disponíveis'}}</span>
+              <span :class="'info-box-number'">{{tags.soma}}</span>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div class="col-lg-3">
+        <template>
+          <div class="info-box">
+            <span :class="['info-box-icon', 'bg-yellow']">
+              <i :class="['ion', 'ion-close-round']"></i>
+            </span>
+            <div class="info-box-content">
+              <span :class="'text'">{{'Salas Reservadas'}}</span>
               <span :class="'info-box-number'">{{tags.soma}}</span>
             </div>
           </div>

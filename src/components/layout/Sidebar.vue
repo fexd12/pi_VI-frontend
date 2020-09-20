@@ -3,6 +3,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <sidebar-menu />
+
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
@@ -11,10 +12,11 @@
 <script>
 import SidebarMenu from "./SidebarMenu";
 
+
 export default {
   name: "Sidebar",
   props: ["user"],
-  components: { SidebarMenu }
+  components: { SidebarMenu },
 };
 </script>
 <style scope="local">
@@ -38,3 +40,4 @@ export default {
   width: 20%;
 }
 </style>
+
