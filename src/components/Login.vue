@@ -8,9 +8,6 @@
       <input v-model="user.email" name="email" type="text" placeholder="E-mail" />
       <input v-model="user.password" name="password" type="password" placeholder="Senha" />
       <button @click="concluirLogin">Entrar</button>
- 
-
-
 
     </div>
   </div>
