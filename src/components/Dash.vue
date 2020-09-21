@@ -37,7 +37,8 @@
 // import DashFooter from './layout/DashFooter'
 import DashHeader from "./layout/DashHeader";
 import Sidebar from "./layout/Sidebar";
-import UserMenu from './layout/UserMenu'
+import UserMenu from './layout/UserMenu';
+import {isSignedIn} from '../auth'
 
 export default {
   name: "Dash",
@@ -63,6 +64,15 @@ export default {
         roles: ""
       };
     }
+  },
+  methods:{
+    async authenticate(){
+      let valida = await isSignedIn(this.$baseUrl);
+      if(!valida)this.$router.push('/')
+    }
+  },
+  async mounted(){
+    await this.authenticate()
   }
 };
 </script>

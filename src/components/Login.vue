@@ -1,20 +1,21 @@
 <template>
   <div class="auth-content">
     <div class="auth-modal">
-      <img src="@/assets/logo.png" width="200" alt="Logo" />
-      <hr />
-      <div class="auth-title">Acessar</div>
+      <form @submit.prevent="onSubmit()">
+        <img src="@/assets/logo.png" width="200" alt="Logo" />
+        <hr />
+        <div class="auth-title">Acessar</div>
 
-      <input v-model="user.email" name="email" type="text" placeholder="E-mail" />
-      <input v-model="user.password" name="password" type="password" placeholder="Senha" />
-      <button @click="concluirLogin">Entrar</button>
-
+        <input class="form-control" v-model="user.email" name="email" type="text" placeholder="E-mail" />
+        <input class="form-control" v-model="user.password" name="password" type="password" placeholder="Senha" />
+        <button type="submit">Entrar</button>
+      </form>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { signIn, isSignedIn } from "../auth";
 
 export default {
   name: "Auth",
@@ -28,10 +29,23 @@ export default {
     };
   },
   methods: {
-    concluirLogin (){
-      console.log('logar')
+    async onSubmit(){
+        let result = await signIn(this.$baseUrl, this.user.email, this.user.password);
+        console.log(result)
+        if (result.success && Object.keys(result).includes("token")) {
+            this.$router.push("/");
+        } else {
+            alert("Usuario ou senha Incorretos");
+        }
+    },
+    async authenticate(){
+        let signed = await isSignedIn(this.$baseUrl);
+        if(signed) this.$router.push('/')
     }
-  }
+  },
+  async mounted() {
+    await this.authenticate();
+  },
 };
 </script>
 
@@ -47,7 +61,7 @@ export default {
   background-color: #fff;
   width: 350px;
   padding: 35px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.30);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 
   display: flex;
   flex-direction: column;
