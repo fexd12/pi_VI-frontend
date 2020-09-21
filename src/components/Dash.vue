@@ -68,7 +68,7 @@ export default {
   methods:{
     async authenticate(){
       let valida = await isSignedIn(this.$baseUrl);
-      if(!valida)this.$router.push('/')
+      if(!valida)this.$router.push('/login')
     }
   },
   async mounted(){

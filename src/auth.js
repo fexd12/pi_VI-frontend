@@ -43,7 +43,9 @@ export async function isSignedIn(url) {
   // const token = localStorage.getItem('token')
   if (token) {
     try {
-      let dados = await axios.get(`${url}/login/`, {});
+      let dados = await axios.get(`${url}/login/`, {headers:{
+        'x-access-token':token
+      }});
       return dados.data.success;
     } catch (error) {
       if (error.statusCode == 403) return false;
