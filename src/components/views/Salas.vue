@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <b-button class="btn btn-secundary" v-b-modal.criaSala>
-        <span>Nova Sala</span>
-      </b-button>
+      <b-button pill variant="primary" v-b-modal.criaSala>Nova Sala</b-button>
     </div>
 
     <b-modal

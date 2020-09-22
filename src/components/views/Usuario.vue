@@ -1,13 +1,11 @@
 <template>
   <div>
     <div>
-      <b-button class="btn btn-primary" v-b-modal.criaUser>
-        <span>Adicionar</span>
-      </b-button>
+      <b-button pill variant="primary" v-b-modal.criaUser> Adicionar</b-button>
     </div>
     <main role="main" class="container">
       <div class="my-3 p-3 bg-white rounded shadow-sm">
-       <b-col  sm="1" lg="5" class="my-2" id="pesquisa">
+       <b-col  sm="1" lg="5" class="my-1" id="pesquisa">
           <b-form-group
             label="Pesquisar:"
             label-cols-sm="3"
@@ -53,8 +51,8 @@
         <div class="info-box-text">
           <b-table
             class="table table-bordered dataTable"
+            responsive="md"
             hover
-            fixed
             head-variant="light"
             :items="ativos"
             :fields="fields"
