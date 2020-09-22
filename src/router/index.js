@@ -6,6 +6,7 @@ import SalasView from '../components/views/Salas.vue'
 import AgendamentoView from '../components/views/Agendamento.vue'
 import UsuarioView from '../components/views/Usuario.vue'
 import Login from '../components/Login.vue'
+import Perfil from '../components/views/Perfil.vue'
 
 // import HelloWorld from '@/components/HelloWorld'
 
@@ -54,6 +55,13 @@ const routes = [
         component: UsuarioView,
         name: 'Usuario',
         meta: { description: "" }
+      },
+      {
+        path: 'perfil',
+        alias: '',
+        component: Perfil,
+        name: 'Perfil do Usuário',
+        meta: { description: "" }        
       }
     ],
     redirect: '/login'

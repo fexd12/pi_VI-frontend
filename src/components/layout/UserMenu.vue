@@ -13,9 +13,9 @@
       <i class="fa fa-angle-down"></i>
     </div>
     <div class="user-dropdown-content">
-      <a href="/perfil">
+      <router-link to="/perfil">
         <i class="fa fa-cog"></i> Perfil
-      </a>
+      </router-link>
       <a href @click.prevent="logout">
         <i class="fa fa-sign-out"></i> Sair
       </a>

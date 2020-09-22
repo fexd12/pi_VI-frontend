@@ -1,7 +1,7 @@
 <template>
   <header class="main-header">
     <span class="logo-mini">
-      <a href="/"><img src="/static/img/logo_empresa11.png" alt="Logo" class="img-responsive center-block logo "></a>
+      <a href="/"><img src="/static/img/logo.png" alt="Logo" class="img-responsive center-block logo "></a>
     </span>
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" style='padding:0px' role="navigation">
