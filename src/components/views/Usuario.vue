@@ -73,7 +73,7 @@
             </template>
 
             <template slot="cell(actionReset)" slot-scope="{ item }">
-              <b-button class="btn btn-warning" v-on:click="beforeEditaUser(item)"> 
+              <b-button class="btn btn-warning" v-on:click="beforeResetPassword(item)"> 
                 <!-- RECRIAR FUNÇÃO PARA RESET -->
                 <i class="fa fa-undo"></i>
               </b-button>
@@ -174,6 +174,18 @@ export default {
         show_password:false
       };
       this.$root.$emit("bv::show::modal", "editaAtivo");
+    },
+    async beforeResetPassword(ativo){
+      let payload={
+        id_usuario:ativo.id_usuario,
+        senha_nova:'senac123',
+        nova_senha:0
+      };
+      try {
+        await this.$http.post(`${this.$baseUrl}/usuario/reset_password/`,payload); 
+      } catch (error) {
+        alert(error.message);
+      } 
     },
     async editarAtivo() {
       let payload = {

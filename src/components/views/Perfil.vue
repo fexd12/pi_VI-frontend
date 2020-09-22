@@ -128,13 +128,14 @@ export default {
       let payload={
         senha:this.ativoAtual.senha,
         senha_nova:this.ativoAtual.senha_nova,
-        senha_confirma:this.ativoAtual.senha_confirma
+        senha_confirma:this.ativoAtual.senha_confirma,
+        nova_senha:1
       }
      try {
-        let response = await this.$http.post(`${this.$baseUrl}/usuario/${this.ativoAtual.id_usuario}/`,payload);
+        let response = await this.$http.post(`${this.$baseUrl}/usuario/reset_password/`,payload);
         
      } catch (error) {
-        alert(error)
+        alert(error.message)
      } 
     }
 
