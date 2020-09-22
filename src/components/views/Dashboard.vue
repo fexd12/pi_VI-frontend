@@ -4,7 +4,7 @@
       <!-- Info boxes -->
       <div class="col-lg-3">
         <template>
-          <div class="info-box">
+          <div class="info-box" v-if="usuario.id == 1">
             <span :class="['info-box-icon', 'bg-blue']">
               <i :class="['ion', 'ion-ios-people-outline']"></i>
             </span>
@@ -103,6 +103,11 @@ export default {
   },
   data: () => {
     return {
+      usuario:{
+        id:1,
+        acesso:'',
+        funcao:''
+      },
       usuarios: {
         soma: ""
       },

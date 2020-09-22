@@ -1,16 +1,16 @@
 <template>
   <b-form>
     <b-form-group id="input-group-1" label="Nome:" label-for="input-1">
-      <b-form-input v-model="content.name" id="input-1" @input="handleInput" required />
+      <b-form-input v-model="content.nome" id="input-1" @input="handleInput" required />
     </b-form-group>
 
     <b-form-group id="input-group-2" label="Email:" label-for="input-2">
       <b-form-input v-model="content.email" id="input-2" @input="handleInput" required />
     </b-form-group>
 
-    <b-form-group v-if="password" id="input-group-3" label="Password:" label-for="input-1">
+    <b-form-group v-if="senha" id="input-group-3" label="Senha:" label-for="input-1">
       <b-form-input
-        v-model="content.password"
+        v-model="content.senha"
         id="input-3"
         @input="handleInput"
         type="password"
@@ -28,7 +28,7 @@
     </b-form-group>
 
     <b-form-group id="input-group-6" label="Função:" label-for="input-6">
-      <b-form-select v-model="content.funcoes" id="input-6" :options="funcoes" @input="handleInput" required />
+      <b-form-select v-model="content.funcao" id="input-6" :options="funcoes" @input="handleInput" required />
     </b-form-group>
   </b-form>
 </template>
@@ -39,29 +39,29 @@ export default {
   props: ["value"],
   data() {
     return {
-      password: true,
+      senha: this.value.show_password,
       content: {
-        password: this.password ? this.value.password: "senac123", 
+        senha: this.senha ? this.value.senha: "senac123", 
         tag: this.value.tag,
-        id: this.value.id,
-        name: this.value.name,
+        acesso: this.value.acesso_id,
+        nome: this.value.nome,
         email: this.value.email,
-        tag: this.value.funcoes
+        funcao: this.value.funcao_id
       }, 
       acessos: [{value:'1',text:'Acesso Full'}, {value:'2', text:'Acesso Restrito'}],
 
-      funcoes: [{value:'0', text:'Professor'}, {value:'1', text:'Limpeza'}, {value: '2', text:'Técnico '}]
+      funcoes: [{value:'1', text:'Professor'}, {value:'2', text:'Limpeza'}, {value: '3', text:'Técnico '}]
     }
   },
   methods: {
     handleInput() {
       let retorno = {
-        password: this.content.password,
+        senha: this.content.senha,
         tag: this.content.tag, 
-        id: this.content.id,
-        name: this.content.name,
+        acesso_id: this.content.acesso,
+        nome: this.content.nome,
         email: this.content.email,
-        funcoes: this.content.funcoes
+        funcao_id: this.content.funcao
       };
       this.$emit("input", retorno);
     }

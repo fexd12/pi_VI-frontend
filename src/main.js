@@ -20,7 +20,7 @@ Vue.use(VueAxios,axios)
 
 Vue.prototype.$baseUrl = "http://localhost:2000"
 Vue.axios.defaults.headers.common['x-access-token'] = localStorage.getItem('token');
-Vue.axios.defaults.headers.common['Access-Control-Allow-Origin'] = "*"
+Vue.axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 
 /* eslint-disable no-new */

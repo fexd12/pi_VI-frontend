@@ -42,7 +42,7 @@
 
         <b-modal
           id="editaAtivo"
-          :title="'Editar Usuario - ' + ativoAtual.name"
+          :title="'Editar Usuario - ' + ativoAtual.nome"
           ok-title="Alterar"
           cancel-title="Cancelar"
           @ok="editarAtivo"
@@ -56,10 +56,10 @@
             hover
             fixed
             head-variant="light"
-            filter="filter"
-            :filter-included-fields="filterOn"
             :items="ativos"
             :fields="fields"
+            :filter="filter"
+            :filter-included-fields="filterOn"
             @filtered="onFiltered"
           >
             <template slot="cell(actionDelete)" slot-scope="{ item }">
@@ -92,7 +92,6 @@
 
 <script>
 import UsersForm from "../widgets/UsersForm";
-import axios from "axios";
 
 export default {
   name: "Usuarios",
@@ -102,33 +101,40 @@ export default {
   data: () => {
     return {
       ativoAtual: {
-        name: "",
+        nome: "",
         email: "",
-        password: "",
-        id: "",
-        filter: null,
-        filterOn: [],
-        currentPage: 1,
-        perPage: 5,
-        total: 0
+        senha: "",
+        id_usuario: "",
+        tag:"",
+        acesso_id:"",
+        funcao_id:"",
+        show_password:true
       },
+      filter: null,
+      sortDesc: null,
+      filterOn: [],
+      currentPage: 1,
+      perPage: 5,
+      total: 0,
       ativos: [],
       fields: [
         {
-          key: "name",
+          key: "nome",
           label: "Nome"
         },
         {
           key: "email",
-          label: "Email"
+          label: "Email",
+          class: "text-style",
+
         },
         {
           key: "tag",
-          label: "Tag do Usuario"
+          label: "Tag"
         },
         {
-          key: "tipoAcesso",
-          label: "Tipo de Acesso"
+          key: "acesso_id",
+          label: "Acesso"
         },
         {
           key: "actionDelete",
@@ -161,21 +167,27 @@ export default {
     },
     beforeEditaUser(ativo) {
       this.ativoAtual = {
-        id: ativo.id,
-        name: ativo.name,
-        email: ativo.email
+        id_usuario: ativo.id_usuario,
+        nome: ativo.nome,
+        email: ativo.email,
+        tag:ativo.tag,
+        acesso_id:ativo.acesso_id,
+        funcao_id:ativo.funcao_id,
+        show_password:false
       };
       this.$root.$emit("bv::show::modal", "editaAtivo");
     },
     async editarAtivo() {
       let payload = {
-        id: this.ativoAtual.id,
-        name: this.ativoAtual.name,
-        email: this.ativoAtual.email
+        id_usuario: this.ativoAtual.id_usuario,
+        nome: this.ativoAtual.nome,
+        email: this.ativoAtual.email,
+        tag: this.ativoAtual.tag,
+        
       };
       try {
         await this.$http.put(
-          `${this.$baseUrl}/users/${this.ativoAtual.id}`,
+          `${this.$baseUrl}/users/${this.ativoAtual.id_usuario}`,
           payload
         );
         await this.carregaTabela();
@@ -185,22 +197,34 @@ export default {
     },
     async carregaTabela() {
       this.ativos.splice(0, this.ativos.length);
-      let dados = await this.$http.get(`${this.$baseUrl}/users`, {});
-      this.ativos.push(...dados.data);
+      await this.$http.get(`${this.$baseUrl}/usuario/`, {}).then(dados=>{
+        
+        dados.data.items.forEach(element => {
+          this.ativos.push(element)
+        });        
+      })
+      this.total = this.ativos.length;
     },
     beforeUsers() {
-      this.ativoAtual.id = "";
-      this.ativoAtual.name = "";
+      this.ativoAtual.tag = "";
+      this.ativoAtual.nome = "";
       this.ativoAtual.email = "";
+      this.ativoAtual.acesso_id = "";
+      this.ativoAtual.senha = "";
+      this.ativoAtual.funcao_id = "";
+      this.ativoAtual.show_password = true;
     },
     async saveUsers() {
       let payload = {
-        id: this.ativoAtual.id,
-        name: this.ativoAtual.name,
-        email: this.ativoAtual.email
+        nome: this.ativoAtual.nome,
+        email: this.ativoAtual.email,
+        senha: this.ativoAtual.senha,
+        tag: this.ativoAtual.tag,
+        acesso_id:this.ativoAtual.acesso_id,
+        funcao_id:this.ativoAtual.funcao_id
       };
       try {
-        await this.$http.post(`${this.$baseUrl}/users/`, payload);
+        await this.$http.post(`${this.$baseUrl}/usuario/`, payload);
         await this.carregaTabela();
       } catch (err) {
         alert("erro ao inserir");
@@ -214,4 +238,11 @@ export default {
 </script>
 
 <style>
+.text-style {
+  white-space: nowrap;
+  height: 100%;
+  /* width: 100%;                    */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>
