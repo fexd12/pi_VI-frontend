@@ -38,7 +38,7 @@
               label-align-sm="right"
               label-for="nested-acesso"
             >
-              <b-form-input v-model="ativoAtual.acesso_id" id="nested-acesso" disabled></b-form-input>
+              <b-form-input v-model="ativoAtual.acesso" id="nested-acesso" disabled></b-form-input>
             </b-form-group>
 
             <b-form-group
@@ -47,7 +47,7 @@
               label-align-sm="right"
               label-for="nested-funcao"
             >
-              <b-form-input v-model="ativoAtual.funcao_id" id="nested-funcao" disabled></b-form-input>
+              <b-form-input v-model="ativoAtual.funcao" id="nested-funcao" disabled></b-form-input>
             </b-form-group>
 
             <b-form-group
