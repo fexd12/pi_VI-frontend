@@ -75,10 +75,23 @@
             >
               <b-form-input v-model="ativoAtual.senha_confirma" id="nested-confirmeSenha" type="password"></b-form-input>
             </b-form-group>
+            <b-button pill variant="primary" v-b-modal.alterarUser>Salvar Alteração</b-button>
           </b-form-group>
         </div>
       </b-card>
     </div>
+    <b-modal
+    id="alterarUser"
+    title="Confirmação de Alteração"
+    ok-title="Confirmar"
+    cancel-title="Cancelar"
+    @ok="reset_password"
+    class="teste"
+    >
+    <div>
+      <h3>Deseja mesmo alterar a senha?</h3>
+    </div>
+    </b-modal>
   </main>
 </template>
 
@@ -139,4 +152,12 @@ export default {
     left: 62px;
     top: 150px;
 }
+
+@media(min-width: 877){
+  .img main {
+    display: none;
+  }
+}
+
+
 </style>

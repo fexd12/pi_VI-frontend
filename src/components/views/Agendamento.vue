@@ -49,9 +49,7 @@
             </b-form>
 
             <div class="form-group center">
-              <b-button type="submit" class="btn btn-success" v-on:click="carregaTabela">
-                <span>Buscar</span>
-              </b-button>
+              <b-button pill variant="primary" type="submit"  v-on:click="carregaTabela">Buscar</b-button>
             </div>
           </div>
         </div>
@@ -73,28 +71,6 @@
               @row-clicked="(item,index,event)=>beforeSalvar(item)"
             ></b-table>
           </div>
-        </div>
-      </div>
-    </main>
-
-    <main role="main" class="container">
-      <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">Usuarios</h6>
-        <div class="media text-muted pt-3">
-          <b-form class="row">
-            <b-form-group id="input-group-4" label="Usuario:" label-for="input-4" class="col">
-              <b-form-select
-                class="mb-3 form-control"
-                v-model="ativoAtual.name"
-                id="input-4"
-                :options="users"
-                required
-              ></b-form-select>
-            </b-form-group>
-          </b-form>
-        </div>
-        <div class="form-group right">
-          <b-button type="submit" class="btn btn-primary" v-on:click="salvar">Salvar</b-button>
         </div>
       </div>
     </main>
