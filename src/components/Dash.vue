@@ -90,7 +90,7 @@ export default {
   height: 100vh;
 }
 
-@media (max-width: 1331) {
+@media (max-width: 1200) {
   .wrapper.hide_logo .main-header .logo {
     display: none;
   }
