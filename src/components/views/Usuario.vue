@@ -157,7 +157,10 @@ export default {
     },
     async excluirUser(ativo) {
       try {
-        await this.$http.delete(`${this.$baseUrl}/users/${ativo.id}`);
+        let payload={
+          id_usuario : ativo.id_usuario
+        }
+        await this.$http.put(`${this.$baseUrl}/usuario/deletar/`,payload);
         await this.carregaTabela();
       } catch (err) {
         alert("erro ao excluir ativo");
@@ -193,13 +196,12 @@ export default {
         nome: this.ativoAtual.nome,
         email: this.ativoAtual.email,
         tag: this.ativoAtual.tag,
+        acesso_id : this.ativoAtual.acesso_id,
+        funcao_id :this.ativoAtual.funcao_id
         
       };
       try {
-        await this.$http.put(
-          `${this.$baseUrl}/users/${this.ativoAtual.id_usuario}`,
-          payload
-        );
+        await this.$http.put(`${this.$baseUrl}/usuario/editar/`,payload);
         await this.carregaTabela();
       } catch (err) {
         alert("erro ao atualizar ativo");

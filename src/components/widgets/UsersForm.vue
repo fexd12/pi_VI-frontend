@@ -41,6 +41,7 @@ export default {
     return {
       senha: this.value.show_password,
       content: {
+        id_usuario:this.value.id_usuario,
         senha: this.senha ? this.value.senha: "senac123", 
         tag: this.value.tag,
         acesso: this.value.acesso_id,
@@ -56,6 +57,7 @@ export default {
   methods: {
     handleInput() {
       let retorno = {
+        id_usuario:this.content.id_usuario,
         senha: this.content.senha,
         tag: this.content.tag, 
         acesso_id: this.content.acesso,
