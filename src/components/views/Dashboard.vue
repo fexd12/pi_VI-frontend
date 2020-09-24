@@ -111,7 +111,7 @@
         </template>
       </div>
     </div>
-    <div class="row" id="Professor" (v-if="usuario.funcao == 1 || usuario.funcao == 4)">
+    <div class="row" id="Professor" v-if="usuario.funcao == 1 || usuario.funcao == 4">
       <div class="col-lg-3">
         <template>
           <div class="info-box">
