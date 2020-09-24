@@ -5,7 +5,7 @@
     <div
       class="row"
       id="Limpeza"
-      v-if="(usuario.funcao = 2 || usuario.funcao == 4)"
+      v-if="usuario.funcao == 2 "
     >
       <div class="col-lg-3">
         <template>
@@ -65,8 +65,93 @@
     </div>
     <div
       class="row"
+      id="Adm"
+      v-if="usuario.funcao == 4 "
+    >
+      <div class="col-lg-3">
+        <template>
+          <div class="info-box">
+            <span :class="['info-box-icon', 'bg-blue']">
+              <i :class="['ion', 'ion-ios-people-outline']"></i>
+            </span>
+            <div class="info-box-content">
+              <span :class="'text'">{{ "Funcionarios Cadastrados" }}</span>
+              <span :class="'info-box-number'">{{ usuarios.soma }}</span>
+            </div>
+          </div>
+        </template>
+        <!-- </div> -->
+      </div>
+      <div class="col-lg-3">
+        <template>
+          <div class="info-box">
+            <span :class="['info-box-icon', 'bg-black']">
+              <i :class="['ion', 'ion-thumbsdown']"></i>
+            </span>
+            <div class="info-box-content">
+              <span :class="'text'">{{ "Salas Sujas " }}</span>
+              <span :class="'info-box-number'">{{ tags.soma }}</span>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div class="col-lg-3">
+        <template>
+          <div class="info-box">
+            <span :class="['info-box-icon', 'bg-green']">
+              <i :class="['ion', 'ion-checkmark-round']"></i>
+            </span>
+            <div class="info-box-content">
+              <span :class="'text'">{{ "Salas Disponíveis " }}</span>
+              <span :class="'info-box-number'">{{ tags.soma }}</span>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div class="col-lg-3">
+        <template>
+          <div class="info-box">
+            <span :class="['info-box-icon', 'bg-yellow']">
+              <i :class="['ion', 'ion-close-round']"></i>
+            </span>
+            <div class="info-box-content">
+              <span :class="'text'">{{ "Quantidade de Salas Alugadas " }}</span>
+              <span :class="'info-box-number'">{{ tags.soma }}</span>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div class="col-lg-3">
+        <template>
+          <div class="info-box">
+            <span :class="['info-box-icon', 'bg-gray']">
+              <i :class="['ion', 'ion-alert-circled']"></i>
+            </span>
+            <div class="info-box-content">
+              <span :class="'text'">{{ "Salas Interditadas " }}</span>
+              <span :class="'info-box-number'">{{ tags.soma }}</span>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div class="col-lg-3">
+        <template>
+          <div class="info-box">
+            <span :class="['info-box-icon', 'bg-red']">
+              <i :class="['ion', 'ion-settings']"></i>
+            </span>
+            <div class="info-box-content">
+              <span :class="'text'">{{ "Salas em Manutenção " }}</span>
+              <span :class="'info-box-number'">{{ tags.soma }}</span>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+    <div
+      class="row"
       id="Tecnico"
-      v-if="usuario.funcao == 3 || usuario.funcao == 4"
+      v-if="usuario.funcao == 3 "
     >
       <div class="col-lg-3">
         <template>
@@ -124,7 +209,7 @@
     <div
       class="row"
       id="Professor"
-      v-if="usuario.funcao == 1 || usuario.funcao == 4"
+      v-if="usuario.funcao == 1 "
     >
       <div class="col-lg-3">
         <template>
@@ -172,7 +257,7 @@
               <i :class="['ion', 'ion-close-round']"></i>
             </span>
             <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Reservadas" }}</span>
+              <span :class="'text'">{{ "Salas Alugadas" }}</span>
               <span :class="'info-box-number'">{{ tags.soma }}</span>
             </div>
           </div>
@@ -189,7 +274,6 @@
               class="table table-bordered dataTable"
               responsive="md"
               hover
-              fixed
               head-variant="light"
               filter="filter"
               :filter-included-fields="filterOn"
@@ -260,7 +344,7 @@ export default {
       fields: [
         {
           key: "data",
-          label: "Data Do Agendamento",
+          label: "Data do Agendamento",
         },
         {
           key: "hora_ini",
@@ -273,6 +357,10 @@ export default {
         {
           key: "nome_sala",
           label: "Nome da Sala",
+        },
+        {
+          key: "tipo_sala",
+          label: "Tipo da Sala",
         },
         {
           key: "actionDelete",
