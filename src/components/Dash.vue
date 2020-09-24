@@ -90,7 +90,7 @@ export default {
   height: 100vh;
 }
 
-@media (max-width: 1200) {
+@media (max-width: 767px) {
   .wrapper.hide_logo .main-header .logo {
     display: none;
   }
@@ -102,12 +102,12 @@ export default {
 }
 .logo-mini img,
 .logo-lg img {
-  padding: 0.4em !important;
+  padding: 0.1em !important;
 }
 
 .logo-lg img {
   display: -webkit-inline-box;
-  width: 25%;
+  width: 25px;
 }
 
 .user-panel {

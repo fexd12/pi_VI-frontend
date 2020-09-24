@@ -89,7 +89,7 @@
     class="teste"
     >
     <div>
-      <h3>Deseja mesmo alterar a senha?</h3>
+      <h5>Deseja mesmo alterar a senha?</h5>
     </div>
     </b-modal>
   </main>
@@ -152,10 +152,11 @@ export default {
     position: absolute;
     left: 62px;
     top: 150px;
+
 }
 
-@media(min-width: 877){
-  .img main {
+@media (max-width: 1080px){
+  .img {
     display: none;
   }
 }
