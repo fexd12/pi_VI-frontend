@@ -325,8 +325,8 @@ export default {
         id: 1,
         acesso: "",
         funcao: 4,
-        filterOn: [],
       },
+      filterOn: [],
       usuarios: {
         soma: "",
       },
@@ -341,6 +341,7 @@ export default {
           quantidade: "",
         },
       ],
+      ativos:[],
       fields: [
         {
           key: "data",

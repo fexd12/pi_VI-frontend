@@ -50,13 +50,13 @@
                 hover
                 fixed
                 head-variant="light"
-                filter="filter"
-                :filter-included-fields="filterOn"
                 :items="ativos"
                 :fields="fields"
+                :filter="filter"
+                :filter-included-fields="filterOn"
                 @filtered="onFiltered"
               >
-                <template slot="cell(actionDelete)" slot-scope="{ item }">
+                <!-- <template slot="cell(actionDelete)" slot-scope="{ item }">
                   <b-button class="btn btn-danger" v-on:click="excluirUser(item)">
                     <i class="fa fa-trash"></i>
                   </b-button>
@@ -66,7 +66,7 @@
                   <b-button class="btn btn-warning" v-on:click="beforeEditaUser(item)">
                     <i class="fa fa-pencil-square-o"></i>
                   </b-button>
-                </template>
+                </template> -->
               </b-table>
               <div>
                 <b-pagination v-model="currentPage" :per-page="perPage" :total-rows="total" />
@@ -109,7 +109,7 @@ export default {
           label: "Quantidade",
         },
         {
-          key: "tipoSala",
+          key: "salas_tipo",
           label: "Tipo de Sala",
         },
       ],
@@ -122,8 +122,12 @@ export default {
     },
     async carregaTabela() {
       this.ativos.splice(0, this.ativos.length);
-      let dados = await this.$http.get(`${this.$baseUrl}/salas/`, {});
-      this.ativos.push(...dados.data);
+      await this.$http.get(`${this.$baseUrl}/salas/`, {}).then(dados=>{
+        dados.data.items.forEach(element => {
+          this.ativos.push(element)
+        });        
+      })
+      this.total = this.ativos.length;
     },
     beforeSala() {
       this.ativoAtual.id_sala = "";
