@@ -2,7 +2,7 @@
   <div>
     <b-form>
       <b-form-group id="input-group-1" label="Nome da Sala:" label-for="input-1">
-        <b-form-input v-model="content.nome" id="input-1" @input="handleInput" required />
+        <b-form-input v-model="content.numero" id="input-1" @input="handleInput" required />
       </b-form-group>
 
       <b-form-group id="input-group-2" label="Quantidade de Cadeiras:" label-for="input-2">
@@ -10,7 +10,7 @@
       </b-form-group>
 
       <b-form-group id="input-group-6" label="Tipo de Sala:" label-for="input-6">
-        <b-form-select v-model="content.sala" id="input-6" :options="sala" @input="handleInput" required/>
+        <b-form-select v-model="content.sala_tipo_id" id="input-6" :options="sala" @input="handleInput" required/>
       </b-form-group>
     </b-form>
   </div>
@@ -23,25 +23,39 @@ export default {
   data() {
     return {
       content: {
-        id: this.value.id,
-        nome: this.value.nome,
+        id_sala: this.value.id_sala,
+        numero: this.value.numero,
         quantidade: this.value.quantidade,
-        sala: this.value.sala
+        sala_tipo_id: this.value.sala_tipo_id
       },
-      sala: [{value:'0', text:'Laboratório de Computadores'}, {value:'1', text:'Laboratório de Digital'}, {value:'2', text:'Sala com Projetor'}, {value:'3', text:'Estúdio de Imagem'}, {value:'4', text:'Estúdio de Som'}]
+      sala: []
     };
   },
   methods: {
     handleInput() {
       let retorno = {
-        id: this.content.id,
-        nome: this.content.nome,
+        id_sala: this.content.id_sala,
+        numero: this.content.numero,
         quantidade: this.content.quantidade,
-        sala: this.content.sala
+        sala_tipo_id: this.content.sala_tipo_id
       };
       this.$emit("input", retorno);
     },
+    async getTipoSala(){
+      let response = await this.$http.get(`${this.$baseUrl}/salas/tipo/`);
+      console.log(response.data)
+      response.data.items.forEach(element => {
+          this.sala.push({
+            value:element.sala_tipo_id,
+            text:element.descricao
+          })
+      })
+
+    },
   },
+  async mounted(){
+    await this.getTipoSala();
+  }
 };
 </script>
 

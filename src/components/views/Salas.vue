@@ -88,25 +88,25 @@ export default {
   data: () => {
     return {
       ativoAtual: {
-        id: "",
-        nome: "",
+        id_sala: "",
+        numero: "",
         quantidade: "",
-        sala: "",
-        filter: null,
-        filterOn: [],
-        currentPage: 1,
-        perPage: 5,
-        total: 0
+        sala_tipo_id: "",
       },
+      filter: null,
+      filterOn: [],
+      currentPage: 1,
+      perPage: 5,
+      total: 0,
       ativos: [],
       fields: [
         {
-          key: "nome",
-          label: "nome",
+          key: "numero",
+          label: "Numero da Sala",
         },
         {
           key: "quantidade",
-          label: "quantidade",
+          label: "Quantidade",
         },
         {
           key: "tipoSala",
@@ -116,19 +116,26 @@ export default {
     };
   },
   methods: {
+    onFiltered(filteredItems){
+      this.totalRows = filteredItems.length
+      this.currentPage = 1
+    },
     async carregaTabela() {
       this.ativos.splice(0, this.ativos.length);
       let dados = await this.$http.get(`${this.$baseUrl}/salas/`, {});
       this.ativos.push(...dados.data);
     },
     beforeSala() {
-      this.ativoAtual.nome = "";
+      this.ativoAtual.id_sala = "";
+      this.ativoAtual.numero = "";
       this.ativoAtual.quantidade = "";
+      this.ativoAtual.sala_tipo_id = "";
     },
     async saveSala() {
       let payload = {
-        nome: this.ativoAtual.nome,
+        numero: this.ativoAtual.numero,
         quantidade: this.ativoAtual.quantidade,
+        sala_tipo_id : this.ativoAtual.sala_tipo_id
       };
       try {
         await this.$http.post(`${this.$baseUrl}/salas/`, payload);
