@@ -2,11 +2,17 @@
   <div>
     <main role="main" class="container">
       <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">Agendamento de Salas</h6>
+        <h6 class="border-bottom border-gray pb-2 mb-0">
+          Agendamento de Salas
+        </h6>
         <div class="media text-muted pt-3">
           <div class="container">
             <b-form class="row">
-              <b-form-group id="input-group-1" label="Data do Agendamento:" label-for="input-1">
+              <b-form-group
+                id="input-group-1"
+                label="Data do Agendamento:"
+                label-for="input-1"
+              >
                 <Datetime
                   v-model="ativoAtual.data"
                   type="date"
@@ -17,7 +23,11 @@
                 ></Datetime>
               </b-form-group>
 
-              <b-form-group id="input-group-2" label="Horário de início:" label-for="input-2">
+              <b-form-group
+                id="input-group-2"
+                label="Horário de início:"
+                label-for="input-2"
+              >
                 <Datetime
                   v-model="ativoAtual.horaInicio"
                   type="time"
@@ -27,7 +37,11 @@
                 ></Datetime>
               </b-form-group>
 
-              <b-form-group id="input-group-3" label="Horário de término:" label-for="input-3">
+              <b-form-group
+                id="input-group-3"
+                label="Horário de término:"
+                label-for="input-3"
+              >
                 <Datetime
                   v-model="ativoAtual.horaFinal"
                   type="time"
@@ -37,7 +51,12 @@
                 ></Datetime>
               </b-form-group>
 
-              <b-form-group id="input-group-4" label="Tipos de Salas:" label-for="input-4" class="col">
+              <b-form-group
+                id="input-group-4"
+                label="Tipos de Salas:"
+                label-for="input-4"
+                class="col"
+              >
                 <b-form-select
                   class="mb-3 form-control"
                   v-model="ativoAtual.salas"
@@ -49,7 +68,13 @@
             </b-form>
 
             <div class="form-group center">
-              <b-button pill variant="primary" type="submit"  v-on:click="carregaTabela">Buscar</b-button>
+              <b-button
+                pill
+                variant="primary"
+                type="submit"
+                v-on:click="carregaTabela"
+                >Buscar</b-button
+              >
             </div>
           </div>
         </div>
@@ -62,14 +87,21 @@
         <div class="media text-muted pt-3">
           <div class="container">
             <b-table
+            class="table table-bordered dataTable"
               hover
-              fixed
-              responsive="true"
+              responsive="md"
               head-variant="light"
               :items="ativos"
               :fields="fields"
-              @row-clicked="(item,index,event)=>beforeSalvar(item)"
-            ></b-table>
+              @row-clicked="(item, index, event) => beforeSalvar(item)"
+            >
+              <template slot="cell(actionAgendar)" slot-scope="{ item }"> 
+                <!-- realizar função de agendamento -->
+                <b-button class="btn btn-success" v-on:click="agendar(item)">
+                  <i class="fa fa-check"></i>
+                </b-button>
+              </template>
+            </b-table>
           </div>
         </div>
       </div>
@@ -112,9 +144,19 @@ export default {
           key: "sala",
           label: "Tipo de Sala",
         },
+        {
+          key: "actionAgendar",
+          label: "Concluir Agendamento",
+        },
       ],
       users: [{ value: null, text: "Selecione um usuario" }],
-     salas: [{value:'0', text:'Laboratório de Computadores'}, {value:'1', text:'Laboratório de Digital'}, {value:'2', text:'Sala com Projetor'}, {value:'3', text:'Estúdio de Imagem'}, {value:'4', text:'Estúdio de Som'}]
+      salas: [
+        { value: "0", text: "Laboratório de Computadores" },
+        { value: "1", text: "Laboratório de Digital" },
+        { value: "2", text: "Sala com Projetor" },
+        { value: "3", text: "Estúdio de Imagem" },
+        { value: "4", text: "Estúdio de Som" },
+      ],
     };
   },
   methods: {
@@ -197,7 +239,5 @@ export default {
 #input-group-4 {
   margin-left: 30px;
   margin-block-start: 1px;
-
-
 }
 </style>

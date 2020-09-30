@@ -76,11 +76,12 @@ export default {
   }
 };
 </script>
-
 <style>
+
 .wrapper.fixed_layout .main-header {
   position: fixed;
   width: 100%;
+  height: 100%;
 }
 .wrapper.fixed_layout .content-wrapper {
   padding-top: 50px;
@@ -117,7 +118,7 @@ export default {
 hr.visible-xs-block {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.17);
-  height: 1px;
+  height: 100%;
   border-color: transparent;
 }
 </style>
