@@ -324,9 +324,9 @@ export default {
       usuario: {
         id: 1,
         acesso: "",
-        funcao: 3,
-        filterOn: [],
+        funcao: 4,
       },
+      filterOn: [],
       usuarios: {
         soma: "",
       },
@@ -341,6 +341,7 @@ export default {
           quantidade: "",
         },
       ],
+      ativos:[],
       fields: [
         {
           key: "data",

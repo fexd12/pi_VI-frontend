@@ -62,7 +62,7 @@ export default {
         tag: this.content.tag, 
         acesso_id: this.content.acesso,
         nome: this.content.nome,
-        email: this.content.email,
+        email: this.content.email.toLowerCase(),
         funcao_id: this.content.funcao
       };
       this.$emit("input", retorno);
