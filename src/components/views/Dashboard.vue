@@ -324,7 +324,7 @@ export default {
       usuario: {
         id: 1,
         acesso: "",
-        funcao: 4,
+        funcao: 3,
         filterOn: [],
       },
       usuarios: {
