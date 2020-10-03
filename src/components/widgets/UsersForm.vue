@@ -20,7 +20,8 @@
     </b-form-group>
 
     <b-form-group id="input-group-4" label="Tag:" label-for="input-4">
-      <b-form-input v-model="content.tag" id="input-4" @input="handleInput" type="tag" required />
+      <b-form-select v-model="content.tag" id="input-4" :options="tags" @input="handleInput" required/>
+ 
     </b-form-group>
 
     <b-form-group id="input-group-5" label="Acesso:" label-for="input-5">

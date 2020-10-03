@@ -8,7 +8,7 @@
       </a>
     </router-link>
 
-    <router-link tag="li" class="pageLink" to="/usuario">
+    <router-link tag="li" class="pageLink" to="/usuario" v-if="usuario.funcao == 4">
       <a>
         <i class="fa fa-address-card"></i>
         <span class="page">Cadastro de Usuário</span>
@@ -40,8 +40,15 @@
 </template>
 <script>
 export default {
-  name: "SidebarMenu"
-};
+  name: "SidebarMenu",
+data: () => {
+  return {
+    usuario: {
+      funcao: 4,
+    }
+  }
+}
+}
 </script>
 <style>
 /* override default */

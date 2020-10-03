@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container" v-if="usuario.funcao == 4" >
       <b-button pill variant="primary" v-b-modal.criaSala>Nova Sala</b-button>
     </div>
 
@@ -87,6 +87,9 @@ export default {
   },
   data: () => {
     return {
+      usuario: {
+        funcao: 4,
+      },
       ativoAtual: {
         id_sala: "",
         numero: "",

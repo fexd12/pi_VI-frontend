@@ -22,6 +22,9 @@ export default {
   props: ["value"],
   data() {
     return {
+      usuario: {
+        funcao: 4,
+      },
       content: {
         id_sala: this.value.id_sala,
         numero: this.value.numero,
