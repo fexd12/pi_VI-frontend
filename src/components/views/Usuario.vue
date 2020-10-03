@@ -236,7 +236,11 @@ export default {
         funcao_id:this.ativoAtual.funcao_id
       };
       try {
-        await this.$http.post(`${this.$baseUrl}/usuario/`, payload);
+        await this.$http.post(`${this.$baseUrl}/usuario/`, payload)
+        // .then(async request =>{
+        //   await this.$http.post(`${this.$baseUrl}/email/`, {...payload,cadastro:1})
+        // })
+        
         await this.carregaTabela();
       } catch (err) {
         alert("erro ao inserir");
