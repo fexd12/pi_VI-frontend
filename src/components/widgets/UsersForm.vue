@@ -20,7 +20,7 @@
     </b-form-group>
 
     <b-form-group id="input-group-4" label="Tag:" label-for="input-4">
-      <b-form-select v-model="content.tag" id="input-4" :options="tags" @input="handleInput" required/>
+      <b-form-select v-model="content.tag_id" id="input-4" :options="tags" @input="handleInput" required/>
  
     </b-form-group>
 
@@ -44,14 +44,14 @@ export default {
       content: {
         id_usuario:this.value.id_usuario,
         senha: this.senha ? this.value.senha: "senac123", 
-        tag: this.value.tag,
+        tag_id: this.value.tag_id,
         acesso: this.value.acesso_id,
         nome: this.value.nome,
         email: this.value.email,
         funcao: this.value.funcao_id
       }, 
       acessos: [{value:'1',text:'Acesso Full'}, {value:'2', text:'Acesso Restrito'}],
-
+      tags: [], 
       funcoes: [{value:'1', text:'Professor'}, {value:'2', text:'Limpeza'}, {value: '3', text:'Técnico '}]
     }
   },
@@ -60,14 +60,28 @@ export default {
       let retorno = {
         id_usuario:this.content.id_usuario,
         senha: this.content.senha,
-        tag: this.content.tag, 
+        tag_id: this.content.tag_id, 
         acesso_id: this.content.acesso,
         nome: this.content.nome,
         email: this.content.email.toLowerCase(),
         funcao_id: this.content.funcao
       };
       this.$emit("input", retorno);
+    },
+    async get_tags(){
+      let dados = await this.$http.get(`${this.$baseUrl}/tag/`)
+        dados.data.items.forEach(element => {
+          this.tags.push({
+          value:element.id_tag,
+          text:element.tag
+          })
+        })
+
+        console.log(this.tags)
     }
+  },
+  async mounted(){
+    await this.get_tags()
   }
 };
 </script>

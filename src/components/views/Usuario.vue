@@ -103,7 +103,7 @@ export default {
         email: "",
         senha: "",
         id_usuario: "",
-        tag:"",
+        tag_id:"",
         acesso_id:"",
         funcao_id:"",
         show_password:true
@@ -131,7 +131,7 @@ export default {
           label: "Tag"
         },
         {
-          key: "acesso_id",
+          key: "acesso",
           label: "Acesso"
         },
         {
@@ -167,13 +167,14 @@ export default {
       }
     },
     beforeEditaUser(ativo) {
+      let selected_ativo = this.ativos.filter(x=> x.id_usuario == ativo.id_usuario)[0];
       this.ativoAtual = {
-        id_usuario: ativo.id_usuario,
-        nome: ativo.nome,
-        email: ativo.email,
-        tag:ativo.tag,
-        acesso_id:ativo.acesso_id,
-        funcao_id:ativo.funcao_id,
+        id_usuario: selected_ativo.id_usuario,
+        nome: selected_ativo.nome,
+        email: selected_ativo.email,
+        tag_id:selected_ativo.tag_id,
+        acesso_id:selected_ativo.acesso_id,
+        funcao_id:selected_ativo.funcao_id,
         show_password:false
       };
       this.$root.$emit("bv::show::modal", "editaAtivo");
@@ -182,10 +183,13 @@ export default {
       let payload={
         id_usuario:ativo.id_usuario,
         senha_nova:'senac123',
-        nova_senha:0
+        nova_senha:0,
       };
       try {
-        await this.$http.post(`${this.$baseUrl}/usuario/reset_password/`,payload); 
+        await this.$http.post(`${this.$baseUrl}/usuario/reset_password/`,payload)
+        .then(async request =>{
+          await this.$http.post(`${this.$baseUrl}/email/`, {...payload,email:ativo.email,cadastro:2})
+        })
       } catch (error) {
         alert(error.message);
       } 
@@ -195,7 +199,7 @@ export default {
         id_usuario: this.ativoAtual.id_usuario,
         nome: this.ativoAtual.nome,
         email: this.ativoAtual.email,
-        tag: this.ativoAtual.tag,
+        tag_id: this.ativoAtual.tag_id,
         acesso_id : this.ativoAtual.acesso_id,
         funcao_id :this.ativoAtual.funcao_id
         
@@ -218,7 +222,7 @@ export default {
       this.total = this.ativos.length;
     },
     beforeUsers() {
-      this.ativoAtual.tag = "";
+      this.ativoAtual.tag_id = "";
       this.ativoAtual.nome = "";
       this.ativoAtual.email = "";
       this.ativoAtual.acesso_id = "";
@@ -231,15 +235,15 @@ export default {
         nome: this.ativoAtual.nome,
         email: this.ativoAtual.email,
         senha: this.ativoAtual.senha,
-        tag: this.ativoAtual.tag,
+        tag_id: this.ativoAtual.tag_id,
         acesso_id:this.ativoAtual.acesso_id,
         funcao_id:this.ativoAtual.funcao_id
       };
       try {
         await this.$http.post(`${this.$baseUrl}/usuario/`, payload)
-        // .then(async request =>{
-        //   await this.$http.post(`${this.$baseUrl}/email/`, {...payload,cadastro:1})
-        // })
+        .then(async request =>{
+          await this.$http.post(`${this.$baseUrl}/email/`, {...payload,cadastro:1})
+        })
         
         await this.carregaTabela();
       } catch (err) {
