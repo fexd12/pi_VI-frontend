@@ -16,7 +16,7 @@
                 <Datetime
                   v-model="ativoAtual.data"
                   type="date"
-                  format="dd-MM-yyyy"
+                  format="yyyy-MM-dd"
                   value-zone="America/Sao_Paulo"
                   placeholder="Selecione a data"
                   :week-start="7"
@@ -59,7 +59,7 @@
               >
                 <b-form-select
                   class="mb-3 form-control"
-                  v-model="ativoAtual.salas"
+                  v-model="ativoAtual.sala_tipo_id"
                   id="input-4"
                   :options="salas"
                   required
@@ -93,7 +93,6 @@
               head-variant="light"
               :items="ativos"
               :fields="fields"
-              @row-clicked="(item, index, event) => beforeSalvar(item)"
             >
               <template slot="cell(actionAgendar)" slot-scope="{ item }"> 
                 <!-- realizar função de agendamento -->
@@ -127,13 +126,13 @@ export default {
         data: "",
         horaInicio: "",
         horaFinal: "",
-        name: "",
-        sala: "",
+        numero: "",
+        sala_tipo_id: "",
       },
       ativos: [],
       fields: [
         {
-          key: "nome",
+          key: "numero",
           label: "Nome da Sala",
         },
         {
@@ -141,7 +140,7 @@ export default {
           label: "Quantidade de Cadeiras",
         },
         {
-          key: "sala",
+          key: "salas_tipo",
           label: "Tipo de Sala",
         },
         {
@@ -168,54 +167,55 @@ export default {
       this.ativoAtual.horaFinal = moment(this.ativoAtual.horaFinal).format(
         "HH:mm"
       );
-      this.ativoAtual.data = moment(this.ativoAtual.data).format("DD-MM-YYYY");
+      this.ativoAtual.data = moment(this.ativoAtual.data).format("YYYY-MM-DD");
+
       let payload = {
-        hora_inicio: this.ativoAtual.horaInicio,
-        hora_final: this.ativoAtual.horaFinal,
+        horario_inicio: this.ativoAtual.horaInicio,
+        horario_final: this.ativoAtual.horaFinal,
         data: this.ativoAtual.data,
+        sala_tipo_id :this.ativoAtual.sala_tipo_id
       };
       try {
         let dados = await this.$http.post(
           `${this.$baseUrl}/salas/status/`,
           payload
         );
-        this.ativos.push(...dados.data);
+        this.ativos.push(...dados.data.items);
+        // this.limpa()
+
       } catch (error) {
-        alert("erro ao inserir");
+        this.limpa()
+        alert("erro ao consultar");
       }
     },
-    async carregaUsuarios() {
-      // this.users.splice(0, this.users.length);
-      let dados = await this.$http.get(`${this.$baseUrl}/userstag/`, {});
-      dados.data.forEach((element) => {
-        this.users.push({
-          value: element.id,
-          text: element.name,
-        });
-      });
-    },
-    async salvar() {
-      // console.log(x)
+    async agendar(item){
       let payload = {
+        horario_inicio: this.ativoAtual.horaInicio,
+        horario_final: this.ativoAtual.horaFinal,
         data: this.ativoAtual.data,
-        horaInicio: this.ativoAtual.horaInicio,
-        horaFinal: this.ativoAtual.horaFinal,
-        name: this.ativoAtual.name,
-        sala: this.ativoAtual.sala,
-      };
-      try {
-        await this.$http.post(`${this.$baseUrl}/agendamento/`, payload);
-        await this.carregaTabela();
-      } catch (err) {
-        alert("erro ao inserir");
+        sala_tipo_id :this.ativoAtual.sala_tipo_id,
+        sala_id: item.id_sala
       }
+      try {
+        await this.$http.post(`${this.$baseUrl}/agendamento/`,payload).then(() => {
+          alert('agendamento inserido com sucesso')
+          this.limpa()
+        })
+      } catch (error) {
+        alert('erro ao inserir')
+      }
+      console.log(payload)
+
     },
-    beforeSalvar(x) {
-      this.ativoAtual.sala = x.id;
-    },
+    limpa(){
+      this.ativoAtual.horaInicio = ''
+      this.ativoAtual.horaFinal = ''
+      this.ativoAtual.data = ''
+      this.ativoAtual.sala_tipo_id = ''
+      this.ativos.splice(0,this.ativos.length)
+    }
   },
   async mounted() {
-    await this.carregaUsuarios();
   },
 };
 </script>
