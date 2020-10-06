@@ -31,7 +31,7 @@ export default {
   methods: {
     async onSubmit(){
         let result = await signIn(this.$baseUrl, this.user.email, this.user.password);
-        console.log(result)
+        // console.log(result)
         if (result.success && Object.keys(result).includes("token")) {
             this.$router.push("/");
         } else {

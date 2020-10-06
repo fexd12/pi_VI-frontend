@@ -383,7 +383,7 @@ export default {
       let dados = await this.$http.get(`${this.$baseUrl}/salas`, {});
       this.salas.push(...dados.data);
       this.salas.splice(0, 1);
-      console.log(this.salas);
+      // console.log(this.salas);
     },
   },
   computed: {

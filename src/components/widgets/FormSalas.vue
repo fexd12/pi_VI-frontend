@@ -46,7 +46,7 @@ export default {
     },
     async getTipoSala(){
       let response = await this.$http.get(`${this.$baseUrl}/salas/tipo/`);
-      console.log(response.data)
+      // console.log(response.data)
       response.data.items.forEach(element => {
           this.sala.push({
             value:element.sala_tipo_id,

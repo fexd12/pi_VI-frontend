@@ -150,11 +150,11 @@ export default {
       ],
       users: [{ value: null, text: "Selecione um usuario" }],
       salas: [
-        { value: "0", text: "Laboratório de Computadores" },
-        { value: "1", text: "Laboratório de Digital" },
-        { value: "2", text: "Sala com Projetor" },
-        { value: "3", text: "Estúdio de Imagem" },
-        { value: "4", text: "Estúdio de Som" },
+        { value: "1", text: "Laboratório de Computadores" },
+        { value: "2", text: "Laboratório de Digital" },
+        { value: "3", text: "Sala com Projetor" },
+        { value: "4", text: "Estúdio de Imagem" },
+        { value: "5", text: "Estúdio de Som" },
       ],
     };
   },
@@ -176,17 +176,33 @@ export default {
         sala_tipo_id :this.ativoAtual.sala_tipo_id
       };
       try {
-        let dados = await this.$http.post(
+        await this.$http.post(
           `${this.$baseUrl}/salas/status/`,
           payload
-        );
-        this.ativos.push(...dados.data.items);
+        ).then(result=>{
+          if (result.length == 0){
+            alert('Não possui sala disponivel');
+            this.limpa()
+          }else this.ativos.push(...result.data.items);
+
+        })
+        
         // this.limpa()
 
       } catch (error) {
         this.limpa()
         alert("erro ao consultar");
       }
+    },
+    async carregaUsuarios(){
+      let response = await this.$http.get(`${this.$baseUrl}/salas/tipo/`);
+      response.data.items.forEach(element => {
+          this.sala.push({
+            value:element.sala_tipo_id,
+            text:element.descricao
+          })
+      })
+
     },
     async agendar(item){
       let payload = {
@@ -204,7 +220,7 @@ export default {
       } catch (error) {
         alert('erro ao inserir')
       }
-      console.log(payload)
+      // console.log(payload)
 
     },
     limpa(){
@@ -216,6 +232,7 @@ export default {
     }
   },
   async mounted() {
+    await this.carregaUsuarios()
   },
 };
 </script>
