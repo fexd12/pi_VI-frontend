@@ -74,7 +74,6 @@
 
             <template slot="cell(actionReset)" slot-scope="{ item }">
               <b-button class="btn btn-warning" v-on:click="beforeResetPassword(item)"> 
-                <!-- RECRIAR FUNÇÃO PARA RESET -->
                 <i class="fa fa-undo"></i>
               </b-button>
             </template>

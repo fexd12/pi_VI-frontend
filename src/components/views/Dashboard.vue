@@ -1,5 +1,5 @@
 <template>
-  <section class="content">
+  <section class="content app">
     <!-- Info boxes -->
     <!-- <div id="Limpeza"> -->
     <div
@@ -275,7 +275,7 @@
               responsive="md"
               hover
               head-variant="light"
-              filter="filter"
+              filter              
               :filter-included-fields="filterOn"
               :items="ativos"
               :fields="fields"
@@ -284,14 +284,16 @@
               <template slot="cell(DeletarAgend)" slot-scope="{ item }">
                 <b-button
                   class="btn btn-danger"
-                  v-on:click="excluirUser(item)"
+                  v-on:click="SaveUser(item)"
                   v-b-modal.DeletarSala
                 >
                   <i class="fa fa-trash"></i>
                 </b-button>
               </template>
-              <b-modal
-                id="DeletarAgend"
+
+            </b-table>
+            <b-modal
+                id="DeletarSala"
                 title="Confirmação de Calendamento"
                 ok-title="Confirmar"
                 cancel-title="Cancelar"
@@ -300,8 +302,7 @@
                 <div>
                   <h5>Deseja mesmo cancelar o agendamento?</h5>
                 </div>
-              </b-modal>
-            </b-table>
+            </b-modal>
           </div>
         </div>
       </main>
@@ -342,21 +343,22 @@ export default {
         },
       ],
       ativos:[],
+      sala :[],
       fields: [
         {
           key: "data",
           label: "Data do Agendamento",
         },
         {
-          key: "hora_ini",
+          key: "horario_inicio",
           label: "Horario de Inicio",
         },
         {
-          key: "hora_termi",
+          key: "horario_final",
           label: "Horario de Termino",
         },
         {
-          key: "nome_sala",
+          key: "numero",
           label: "Nome da Sala",
         },
         {
@@ -364,37 +366,57 @@ export default {
           label: "Tipo da Sala",
         },
         {
-          key: "actionDelete",
+          key: "DeletarAgend",
           label: "Cancelar Agedamento",
         },
       ],
     };
   },
   methods: {
-    async carregaUsuarios() {
-      let dados = await this.$http.get(`${this.$baseUrl}/users/all/`, {});
-      this.usuarios.soma = dados.data;
+    // async carregaUsuarios() {
+    //   let dados = await this.$http.get(`${this.$baseUrl}/users/all/`, {});
+    //   this.usuarios.soma = dados.data;
+    // },
+    // async carregaTags() {
+    //   let dados = await this.$http.get(`${this.$baseUrl}/tag/all/`, {});
+    //   this.tags.soma = dados.data;
+    // },
+    // async carregaSala() {
+    //   let dados = await this.$http.get(`${this.$baseUrl}/salas/`, {});
+    //   this.salas.push(...dados.data);
+    //   this.salas.splice(0, 1);
+    //   // console.log(this.salas);
+    // },
+
+    onFiltered(filteredItems){
+      this.totalRows = filteredItems.length
+      this.currentPage = 1
     },
-    async carregaTags() {
-      let dados = await this.$http.get(`${this.$baseUrl}/tag/all/`, {});
-      this.tags.soma = dados.data;
+    async carregaAgendamento(){
+      let dados = await this.$http.get(`${this.$baseUrl}/agendamento/`, {});
+      this.ativos.push(...dados.data.items)
     },
-    async carregaSala() {
-      let dados = await this.$http.get(`${this.$baseUrl}/salas`, {});
-      this.salas.push(...dados.data);
-      this.salas.splice(0, 1);
-      // console.log(this.salas);
+    async DeletarSala(){
+      try {
+        await this.$http.put(`${this.$baseUrl}/agendamento/`,this.sala[0]);
+        await this.carregaAgendamento();
+      } catch (error) {
+        alert('nao foi possivel excluir o agendamento')
+      }
+    },
+    async SaveUser(item){
+      this.sala.splice(0,this.sala.length)
+      this.sala.push(item)
     },
   },
   computed: {
-    isMobile() {
-      return window.innerWidth <= 800 && window.innerHeight <= 600;
-    },
+
   },
   async mounted() {
-    await this.carregaUsuarios();
-    await this.carregaTags();
-    await this.carregaSala();
+    // await this.carregaUsuarios();
+    // await this.carregaTags();
+    // await this.carregaSala();
+    await this.carregaAgendamento();
   },
 };
 </script>
