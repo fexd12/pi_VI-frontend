@@ -325,7 +325,7 @@ export default {
       usuario: {
         id: 1,
         acesso: "",
-        funcao: 4,
+        funcao: '',
       },
       filterOn: [],
       usuarios: {
@@ -334,14 +334,6 @@ export default {
       tags: {
         soma: "",
       },
-      salas: [
-        {
-          id: "",
-          nome: "",
-          status: "",
-          quantidade: "",
-        },
-      ],
       ativos:[],
       sala :[],
       fields: [
@@ -387,7 +379,11 @@ export default {
     //   this.salas.splice(0, 1);
     //   // console.log(this.salas);
     // },
-
+    async get_usuario(){
+      let response = await this.$http.get(`${this.$baseUrl}/usuario/token/`,{});
+      let data = response.data
+      this.usuario.funcao = data.id_funcao
+    },
     onFiltered(filteredItems){
       this.totalRows = filteredItems.length
       this.currentPage = 1
@@ -416,6 +412,7 @@ export default {
     // await this.carregaUsuarios();
     // await this.carregaTags();
     // await this.carregaSala();
+    await this.get_usuario();
     await this.carregaAgendamento();
   },
 };
