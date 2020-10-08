@@ -1,6 +1,6 @@
 <template>
   <ul class="sidebar-menu">
-    <li class="header">Funções</li>
+    <li class="header" id="teste">Funções</li>
     <router-link tag="li" class="pageLink" to="/">
       <a>
         <i class="fa fa-desktop"></i>
@@ -53,7 +53,7 @@ data: () => {
 <style>
 /* override default */
 .sidebar-menu > li > a {
-  padding: 12px 15px 12px 17px;
+  padding: 10px 15px 12px 17px;
 }
 
 .sidebar-menu li.active > a > .fa-angle-left,
@@ -73,5 +73,9 @@ data: () => {
   100% {
     transform: rotate(-90deg);
   }
+}
+
+#teste{
+  padding-top: 50px;
 }
 </style>

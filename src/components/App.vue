@@ -19,7 +19,7 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   width: 100%;
-  height: 100vh;
+  height: auto;
   display: grid;
 
 }

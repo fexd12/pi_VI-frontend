@@ -43,6 +43,7 @@ export default {
 .user-dropdown {
   position: relative;
   height: 100%;
+  left: 1160px;
 }
 
 .user-button {
