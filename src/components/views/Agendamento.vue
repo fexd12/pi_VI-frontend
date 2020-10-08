@@ -89,9 +89,9 @@
             <b-table
             class="table table-bordered dataTable"
               hover
-              responsive="md"
+              responsive :items="ativos"
               head-variant="light"
-              :items="ativos"
+
               :fields="fields"
             >
               <template slot="cell(actionAgendar)" slot-scope="{ item }"> 
@@ -239,7 +239,7 @@ export default {
 
 <style>
 #input-group-1 {
-  margin-left: 30px;
+  margin-left: 50px;
   margin-block-start: 1px;
 }
 
@@ -254,7 +254,9 @@ export default {
 }
 
 #input-group-4 {
-  margin-left: 30px;
+  margin-left: 50px;
   margin-block-start: 1px;
 }
+
+
 </style>

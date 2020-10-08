@@ -51,10 +51,9 @@
         <div class="info-box-text">
           <b-table
             class="table table-bordered dataTable"
-            responsive="md"
+            responsive :items="ativos"
             hover
             head-variant="light"
-            :items="ativos"
             :fields="fields"
             :filter="filter"
             :filter-included-fields="filterOn"
@@ -263,5 +262,10 @@ export default {
   /* width: 100%;                    */
   overflow: hidden;
   text-overflow: ellipsis;
+}
+@media (max-width: 900px){
+  #pesquisa{
+    display: none;
+  }
 }
 </style>

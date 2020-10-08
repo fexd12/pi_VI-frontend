@@ -268,16 +268,16 @@
     <div>
       <h4 class="titulo-dashboard">Agendamentos do Usuário</h4>
       <main role="main" class="container">
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <div class="my-3 p-2 bg-white rounded shadow-sm">
           <div class="info-box-text">
             <b-table
               class="table table-bordered dataTable"
-              responsive="md"
+              responsive :items="ativos"
               hover
               head-variant="light"
               filter              
               :filter-included-fields="filterOn"
-              :items="ativos"
+              
               :fields="fields"
               @filtered="onFiltered"
             >

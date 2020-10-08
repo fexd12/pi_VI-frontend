@@ -159,4 +159,10 @@ export default {
 </script>
 
 <style>
+
+@media (max-width: 900px){
+  #pesquisa{
+    display: none;
+  }
+}
 </style>

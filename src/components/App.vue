@@ -1,5 +1,4 @@
 <template>
-
   <div id="app">
     <router-view></router-view>
   </div>
@@ -7,7 +6,7 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
 };
 </script>
 
@@ -22,6 +21,10 @@ export default {
   width: 100%;
   height: 100vh;
   display: grid;
- 
+
 }
+body{
+  overflow: scroll;
+}
+
 </style>

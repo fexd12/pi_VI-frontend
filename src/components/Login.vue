@@ -2,7 +2,7 @@
   <div class="auth-content">
     <div class="auth-modal">
       <form @submit.prevent="onSubmit()">
-        <img src="@/assets/logo.png" width="200" alt="Logo" />
+        <img src="@/assets/logo.png" width="270" alt="Logo" class="Logo" />
         <hr />
         <div class="auth-title">Acessar</div>
 
@@ -104,5 +104,12 @@ export default {
     rgba(10, 120, 120, 0.75),
     rgba(120, 120, 120, 0)
   );
+
+
+}
+
+.Logo{
+  position: relative;
+  left: 25px;
 }
 </style>
