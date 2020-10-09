@@ -22,14 +22,6 @@
       </a>
     </router-link>
 
-    <router-link tag="li" class="pageLink" to="/tags">
-      <a>
-        <i class="fa fa-address-book-o"></i>
-        <span class="page">Lista de Funcionarios</span>
-      </a>
-    </router-link>
-
-
     <router-link tag="li" class="pageLink" to="/agendamento">
       <a>
         <i class="fa fa-calendar"></i>
@@ -53,7 +45,7 @@ data: () => {
 <style>
 /* override default */
 .sidebar-menu > li > a {
-  padding: 10px 15px 12px 17px;
+  padding: 30px 15px 12px 17px;
 }
 
 .sidebar-menu li.active > a > .fa-angle-left,
