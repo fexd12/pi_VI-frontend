@@ -277,7 +277,8 @@
               head-variant="light"
               filter              
               :filter-included-fields="filterOn"
-              
+              :current-page="currentPage"
+              :per-page="perPage"
               :fields="fields"
               @filtered="onFiltered"
             >
@@ -303,6 +304,7 @@
                   <h5>Deseja mesmo cancelar o agendamento?</h5>
                 </div>
             </b-modal>
+             <b-pagination v-model="currentPage" :per-page="perPage" :total-rows="total"/>
           </div>
         </div>
       </main>
@@ -328,6 +330,9 @@ export default {
         funcao: '',
       },
       filterOn: [],
+      currentPage: 1,
+      perPage: 4,
+      total: 0,
       usuarios: {
         soma: "",
       },
@@ -391,6 +396,7 @@ export default {
     async carregaAgendamento(){
       let dados = await this.$http.get(`${this.$baseUrl}/agendamento/`, {});
       this.ativos.push(...dados.data.items)
+      this.total = this.ativos.length
     },
     async DeletarSala(){
       try {
