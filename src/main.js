@@ -18,7 +18,8 @@ Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 Vue.use(VueAxios,axios)
 
-Vue.prototype.$baseUrl = "http://localhost:2000"
+Vue.prototype.$baseUrl = "http://localhost:2000";
+Vue.prototype.$usuario;
 Vue.axios.defaults.headers.common['x-access-token'] = localStorage.getItem('token');
 Vue.axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 

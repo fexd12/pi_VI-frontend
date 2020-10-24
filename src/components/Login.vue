@@ -33,14 +33,14 @@ export default {
         let result = await signIn(this.$baseUrl, this.user.email, this.user.password);
         // console.log(result)
         if (result.success && Object.keys(result).includes("token")) {
-            this.$router.push("/");
+            this.$router.push("/dashboard");
         } else {
             alert("Usuario ou senha Incorretos");
         }
     },
     async authenticate(){
         let signed = await isSignedIn(this.$baseUrl);
-        if(signed) this.$router.push('/')
+        if(signed) this.$router.push('/dashboard')
     }
   },
   async mounted() {

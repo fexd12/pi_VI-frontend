@@ -77,7 +77,7 @@ export default {
           })
         })
 
-        console.log(this.tags)
+        // console.log(this.tags)
     }
   },
   async mounted(){

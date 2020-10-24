@@ -6,7 +6,7 @@ export async function signIn(url, email, senha) {
     senha
   },{headers:{
     'Access-Control-Allow-Origin':'*'
-  }});
+  }})
   if (Object.keys(token.data).includes("token") && token.data.success) {
     localStorage.setItem("token", token.data.token);
     localStorage.setItem("user", token.data.user);
@@ -53,4 +53,16 @@ export async function isSignedIn(url) {
   } else {
     return false;
   }
+}
+
+export async function get_usuario(url){
+    const token = localStorage.getItem("token")
+
+    let response = await axios.get(`${url}/usuario/token/`,{headers:{
+        'x-access-token':token
+    }});
+    let data = response.data
+    console.log(data)
+    return data
+    
 }

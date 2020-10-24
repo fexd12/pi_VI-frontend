@@ -2,268 +2,7 @@
   <section class="content app">
     <!-- Info boxes -->
     <!-- <div id="Limpeza"> -->
-    <div
-      class="row"
-      id="Limpeza"
-      v-if="usuario.funcao == 2 "
-    >
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-blue']">
-              <i :class="['ion', 'ion-ios-people-outline']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{
-                "Funcionarios de Limpeza Cadastrados"
-              }}</span>
-              <span :class="'info-box-number'">{{ usuarios.soma }}</span>
-            </div>
-          </div>
-        </template>
-        <!-- </div> -->
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-red']">
-              <i :class="['ion', 'ion-settings']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Sujas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-green']">
-              <i :class="['ion', 'ion-checkmark-round']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Disponíveis " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-yellow']">
-              <i :class="['ion', 'ion-close-round']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Alugadas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-    </div>
-    <div
-      class="row"
-      id="Adm"
-      v-if="usuario.funcao == 4 "
-    >
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-blue']">
-              <i :class="['ion', 'ion-ios-people-outline']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Funcionarios Cadastrados" }}</span>
-              <span :class="'info-box-number'">{{ usuarios.soma }}</span>
-            </div>
-          </div>
-        </template>
-        <!-- </div> -->
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-black']">
-              <i :class="['ion', 'ion-thumbsdown']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Sujas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-green']">
-              <i :class="['ion', 'ion-checkmark-round']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Disponíveis " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-yellow']">
-              <i :class="['ion', 'ion-close-round']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Quantidade de Salas Alugadas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-gray']">
-              <i :class="['ion', 'ion-alert-circled']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Interditadas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-red']">
-              <i :class="['ion', 'ion-settings']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas em Manutenção " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-    </div>
-    <div
-      class="row"
-      id="Tecnico"
-      v-if="usuario.funcao == 3 "
-    >
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-gray']">
-              <i :class="['ion', 'ion-alert-circled']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Interditadas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-red']">
-              <i :class="['ion', 'ion-settings']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas em Manutenção " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-green']">
-              <i :class="['ion', 'ion-checkmark-round']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Disponíveis " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-yellow']">
-              <i :class="['ion', 'ion-close-round']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Alugadas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-    </div>
-    <div
-      class="row"
-      id="Professor"
-      v-if="usuario.funcao == 1 "
-    >
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-black']">
-              <i :class="['ion', 'ion-pin']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Quantidade de Salas Alugadas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-red']">
-              <i :class="['ion', 'ion-settings']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas em Manutenção " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-green']">
-              <i :class="['ion', 'ion-checkmark-round']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Disponíveis" }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-yellow']">
-              <i :class="['ion', 'ion-close-round']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Alugadas" }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
-    </div>
+    <IconsDash v-model="usuario" />
     <hr />
     <div>
       <h4 class="titulo-dashboard">Agendamentos do Usuário</h4>
@@ -314,26 +53,22 @@
 
 <script>
 import TableSalas from "../widgets/TableSalas";
+import {get_usuario} from '../../auth';
+import IconsDash from '../widgets/IconsDash';
 
 export default {
   name: "Dashboard",
   components: {
     TableSalas,
+    IconsDash
   },
   data: () => {
     return {
       usuario: {
-        id: 1,
-        acesso: "",
-        funcao: '',
+        soma:''
       },
       filterOn: [],
-      usuarios: {
-        soma: "",
-      },
-      tags: {
-        soma: "",
-      },
+
       ativos:[],
       sala :[],
       fields: [
@@ -365,28 +100,16 @@ export default {
     };
   },
   methods: {
-    // async carregaUsuarios() {
-    //   let dados = await this.$http.get(`${this.$baseUrl}/users/all/`, {});
-    //   this.usuarios.soma = dados.data;
-    // },
-    // async carregaTags() {
-    //   let dados = await this.$http.get(`${this.$baseUrl}/tag/all/`, {});
-    //   this.tags.soma = dados.data;
-    // },
-    // async carregaSala() {
-    //   let dados = await this.$http.get(`${this.$baseUrl}/salas/`, {});
-    //   this.salas.push(...dados.data);
-    //   this.salas.splice(0, 1);
-    //   // console.log(this.salas);
-    // },
-    async get_usuario(){
-      let response = await this.$http.get(`${this.$baseUrl}/usuario/token/`,{});
-      let data = response.data
-      this.usuario.funcao = data.id_funcao
-    },
     onFiltered(filteredItems){
       this.totalRows = filteredItems.length
       this.currentPage = 1
+    },
+    async Usuario(){
+        let response = await get_usuario(this.$baseUrl);
+        this.usuario ={
+            ...response
+        }
+        console.log(this.usuario)
     },
     async carregaAgendamento(){
       let dados = await this.$http.get(`${this.$baseUrl}/agendamento/`, {});
@@ -409,10 +132,7 @@ export default {
 
   },
   async mounted() {
-    // await this.carregaUsuarios();
-    // await this.carregaTags();
-    // await this.carregaSala();
-    await this.get_usuario();
+    await this.Usuario();
     await this.carregaAgendamento();
   },
 };
