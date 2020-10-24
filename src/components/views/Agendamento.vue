@@ -155,6 +155,8 @@ export default {
         { value: "3", text: "Sala com Projetor" },
         { value: "4", text: "Estúdio de Imagem" },
         { value: "5", text: "Estúdio de Som" },
+        { value: "6", text: "Laboratório de Design" },
+        {value: "7", text: "Laboratório de Estética"}
       ],
     };
   },

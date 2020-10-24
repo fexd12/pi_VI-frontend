@@ -8,7 +8,12 @@
       </a>
     </router-link>
 
-    <router-link tag="li" class="pageLink" to="/usuario" v-if="usuario.funcao == 4">
+    <router-link
+      tag="li"
+      class="pageLink"
+      to="/usuario"
+      v-if="usuario.funcao == 4"
+    >
       <a>
         <i class="fa fa-address-card"></i>
         <span class="page">Cadastro de Usuário</span>
@@ -33,14 +38,27 @@
 <script>
 export default {
   name: "SidebarMenu",
-data: () => {
-  return {
-    usuario: {
-      funcao: 4,
-    }
-  }
-}
-}
+  data: () => {
+    return {
+      usuario: {
+        funcao: "",
+      },
+    };
+  },
+  methods: {
+    async get_usuario() {
+      let response = await this.$http.get(
+        `${this.$baseUrl}/usuario/token/`,
+        {}
+      );
+      let data = response.data;
+      this.usuario.funcao = data.id_funcao;
+    },
+  },
+  async mounted() {
+      await this.get_usuario()
+  },
+};
 </script>
 <style>
 /* override default */
@@ -67,7 +85,7 @@ data: () => {
   }
 }
 
-#teste{
+#teste {
   padding-top: 50px;
 }
 </style>

@@ -55,6 +55,8 @@
             hover
             head-variant="light"
             :fields="fields"
+            :current-page="currentPage"
+            :per-page="perPage"
             :filter="filter"
             :filter-included-fields="filterOn"
             @filtered="onFiltered"
@@ -110,7 +112,7 @@ export default {
       sortDesc: null,
       filterOn: [],
       currentPage: 1,
-      perPage: 5,
+      perPage: 3,
       total: 0,
       ativos: [],
       fields: [
