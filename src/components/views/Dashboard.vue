@@ -2,11 +2,7 @@
   <section class="content app">
     <!-- Info boxes -->
     <!-- <div id="Limpeza"> -->
-    <div
-      class="row"
-      id="Limpeza"
-      v-if="usuario.funcao == 2 "
-    >
+    <div class="row" id="Limpeza" v-if="usuario.funcao == 2">
       <div class="col-lg-3">
         <template>
           <div class="info-box">
@@ -17,24 +13,11 @@
               <span :class="'text'">{{
                 "Funcionarios de Limpeza Cadastrados"
               }}</span>
-              <span :class="'info-box-number'">{{ usuarios.soma }}</span>
+              <span :class="'info-box-number'">{{ limpeza.soma }}</span>
             </div>
           </div>
         </template>
         <!-- </div> -->
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-red']">
-              <i :class="['ion', 'ion-settings']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Sujas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
       </div>
       <div class="col-lg-3">
         <template>
@@ -63,38 +46,8 @@
         </template>
       </div>
     </div>
-    <div
-      class="row"
-      id="Adm"
-      v-if="usuario.funcao == 4 "
-    >
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-blue']">
-              <i :class="['ion', 'ion-ios-people-outline']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Funcionarios Cadastrados" }}</span>
-              <span :class="'info-box-number'">{{ usuarios.soma }}</span>
-            </div>
-          </div>
-        </template>
-        <!-- </div> -->
-      </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-black']">
-              <i :class="['ion', 'ion-thumbsdown']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Sujas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
+
+    <div class="row" id="Adm" v-if="usuario.funcao == 4">
       <div class="col-lg-3">
         <template>
           <div class="info-box">
@@ -103,11 +56,12 @@
             </span>
             <div class="info-box-content">
               <span :class="'text'">{{ "Salas Disponíveis " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
+              <span :class="'info-box-number'">{{ limpeza.soma }}</span>
             </div>
           </div>
         </template>
       </div>
+
       <div class="col-lg-3">
         <template>
           <div class="info-box">
@@ -115,25 +69,13 @@
               <i :class="['ion', 'ion-close-round']"></i>
             </span>
             <div class="info-box-content">
-              <span :class="'text'">{{ "Quantidade de Salas Alugadas " }}</span>
+              <span :class="'text'">{{ "Salas Alugadas " }}</span>
               <span :class="'info-box-number'">{{ tags.soma }}</span>
             </div>
           </div>
         </template>
       </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-gray']">
-              <i :class="['ion', 'ion-alert-circled']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Interditadas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
+
       <div class="col-lg-3">
         <template>
           <div class="info-box">
@@ -148,24 +90,8 @@
         </template>
       </div>
     </div>
-    <div
-      class="row"
-      id="Tecnico"
-      v-if="usuario.funcao == 3 "
-    >
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-gray']">
-              <i :class="['ion', 'ion-alert-circled']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Interditadas " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
+
+    <div class="row" id="Tecnico" v-if="usuario.funcao == 3">
       <div class="col-lg-3">
         <template>
           <div class="info-box">
@@ -179,6 +105,7 @@
           </div>
         </template>
       </div>
+
       <div class="col-lg-3">
         <template>
           <div class="info-box">
@@ -192,6 +119,7 @@
           </div>
         </template>
       </div>
+
       <div class="col-lg-3">
         <template>
           <div class="info-box">
@@ -206,11 +134,7 @@
         </template>
       </div>
     </div>
-    <div
-      class="row"
-      id="Professor"
-      v-if="usuario.funcao == 1 "
-    >
+    <div class="row" id="Professor" v-if="usuario.funcao == 1">
       <div class="col-lg-3">
         <template>
           <div class="info-box">
@@ -218,25 +142,13 @@
               <i :class="['ion', 'ion-pin']"></i>
             </span>
             <div class="info-box-content">
-              <span :class="'text'">{{ "Quantidade de Salas Alugadas " }}</span>
+              <span :class="'text'">{{ "Salas Alugadas" }}</span>
               <span :class="'info-box-number'">{{ tags.soma }}</span>
             </div>
           </div>
         </template>
       </div>
-      <div class="col-lg-3">
-        <template>
-          <div class="info-box">
-            <span :class="['info-box-icon', 'bg-red']">
-              <i :class="['ion', 'ion-settings']"></i>
-            </span>
-            <div class="info-box-content">
-              <span :class="'text'">{{ "Salas em Manutenção " }}</span>
-              <span :class="'info-box-number'">{{ tags.soma }}</span>
-            </div>
-          </div>
-        </template>
-      </div>
+
       <div class="col-lg-3">
         <template>
           <div class="info-box">
@@ -250,14 +162,15 @@
           </div>
         </template>
       </div>
+
       <div class="col-lg-3">
         <template>
           <div class="info-box">
-            <span :class="['info-box-icon', 'bg-yellow']">
-              <i :class="['ion', 'ion-close-round']"></i>
+            <span :class="['info-box-icon', 'bg-red']">
+              <i :class="['ion', 'ion-settings']"></i>
             </span>
             <div class="info-box-content">
-              <span :class="'text'">{{ "Salas Alugadas" }}</span>
+              <span :class="'text'">{{ "Salas em Manutenção " }}</span>
               <span :class="'info-box-number'">{{ tags.soma }}</span>
             </div>
           </div>
@@ -272,10 +185,11 @@
           <div class="info-box-text">
             <b-table
               class="table table-bordered dataTable"
-              responsive :items="ativos"
+              responsive
+              :items="ativos"
               hover
               head-variant="light"
-              filter              
+              filter
               :filter-included-fields="filterOn"
               :current-page="currentPage"
               :per-page="perPage"
@@ -291,20 +205,23 @@
                   <i class="fa fa-trash"></i>
                 </b-button>
               </template>
-
             </b-table>
             <b-modal
-                id="DeletarSala"
-                title="Confirmação de Calendamento"
-                ok-title="Confirmar"
-                cancel-title="Cancelar"
-                @ok="DeletarSala"
-              >
-                <div>
-                  <h5>Deseja mesmo cancelar o agendamento?</h5>
-                </div>
+              id="DeletarSala"
+              title="Confirmação de Calendamento"
+              ok-title="Confirmar"
+              cancel-title="Cancelar"
+              @ok="DeletarSala"
+            >
+              <div>
+                <h5>Deseja mesmo cancelar o agendamento?</h5>
+              </div>
             </b-modal>
-             <b-pagination v-model="currentPage" :per-page="perPage" :total-rows="total"/>
+            <b-pagination
+              v-model="currentPage"
+              :per-page="perPage"
+              :total-rows="total"
+            />
           </div>
         </div>
       </main>
@@ -327,7 +244,7 @@ export default {
       usuario: {
         id: 1,
         acesso: "",
-        funcao: '',
+        funcao: "",
       },
       filterOn: [],
       currentPage: 1,
@@ -339,8 +256,11 @@ export default {
       tags: {
         soma: "",
       },
-      ativos:[],
-      sala :[],
+      limpeza: {
+        soma: "",
+      },
+      ativos: [],
+      sala: [],
       fields: [
         {
           key: "data",
@@ -384,42 +304,48 @@ export default {
     //   this.salas.splice(0, 1);
     //   // console.log(this.salas);
     // },
-    async get_usuario(){
-      let response = await this.$http.get(`${this.$baseUrl}/usuario/token/`,{});
-      let data = response.data
-      this.usuario.funcao = data.id_funcao
+    async get_usuario() {
+      let response = await this.$http.get(
+        `${this.$baseUrl}/usuario/token/`,
+        {}
+      );
+      let data = response.data;
+      this.usuario.funcao = data.id_funcao;
     },
-    onFiltered(filteredItems){
-      this.totalRows = filteredItems.length
-      this.currentPage = 1
+    async get_limpeza() {
+      let response = await this.$http.get(
+        `${this.$baseUrl}/usuario/limpeza`,
+        {}
+      );
+      this.limpeza.soma = response.data;
     },
-    async carregaAgendamento(){
+    onFiltered(filteredItems) {
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    async carregaAgendamento() {
       let dados = await this.$http.get(`${this.$baseUrl}/agendamento/`, {});
-      this.ativos.push(...dados.data.items)
-      this.total = this.ativos.length
+      this.ativos.push(...dados.data.items);
+      this.total = this.ativos.length;
     },
-    async DeletarSala(){
+    async DeletarSala() {
       try {
-        await this.$http.put(`${this.$baseUrl}/agendamento/`,this.sala[0]);
+        await this.$http.put(`${this.$baseUrl}/agendamento/`, this.sala[0]);
         await this.carregaAgendamento();
       } catch (error) {
-        alert('nao foi possivel excluir o agendamento')
+        alert("nao foi possivel excluir o agendamento");
       }
     },
-    async SaveUser(item){
-      this.sala.splice(0,this.sala.length)
-      this.sala.push(item)
+    async SaveUser(item) {
+      this.sala.splice(0, this.sala.length);
+      this.sala.push(item);
     },
   },
-  computed: {
-
-  },
+  computed: {},
   async mounted() {
-    // await this.carregaUsuarios();
-    // await this.carregaTags();
-    // await this.carregaSala();
     await this.get_usuario();
     await this.carregaAgendamento();
+    await this.get_limpeza();
   },
 };
 </script>
@@ -439,5 +365,18 @@ export default {
 .titulo-dashboard {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 27px;
+}
+
+#Adm {
+  justify-content: center;
+}
+#Limpeza {
+  justify-content: center;
+}
+#Tecnico {
+  justify-content: center;
+}
+#Professor {
+  justify-content: center;
 }
 </style>

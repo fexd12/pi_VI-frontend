@@ -121,6 +121,7 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
+    
     async carregaTabela() {
       this.ativos.splice(0, this.ativos.length);
       await this.$http.get(`${this.$baseUrl}/salas/`, {}).then((dados) => {

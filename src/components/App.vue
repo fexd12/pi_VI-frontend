@@ -21,6 +21,7 @@ export default {
   width: 100%;
   height:110vh;
   display: grid;
+  /* overflow: hidden; */
 
 
 }
