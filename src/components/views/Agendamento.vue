@@ -61,7 +61,7 @@
                   class="mb-3 form-control"
                   v-model="ativoAtual.sala_tipo_id"
                   id="input-4"
-                  :options="salas"
+                  :options="sala"
                   required
                 ></b-form-select>
               </b-form-group>
@@ -130,6 +130,7 @@ export default {
         sala_tipo_id: "",
       },
       ativos: [],
+      sala:[],
       fields: [
         {
           key: "numero",
@@ -149,15 +150,15 @@ export default {
         },
       ],
       users: [{ value: null, text: "Selecione um usuario" }],
-      salas: [
-        { value: "1", text: "Laboratório de Computadores" },
-        { value: "2", text: "Laboratório de Digital" },
-        { value: "3", text: "Sala com Projetor" },
-        { value: "4", text: "Estúdio de Imagem" },
-        { value: "5", text: "Estúdio de Som" },
-        { value: "6", text: "Laboratório de Design" },
-        {value: "7", text: "Laboratório de Estética"}
-      ],
+    //   salas: [
+    //     { value: "1", text: "Laboratório de Computadores" },
+    //     { value: "2", text: "Laboratório de Digital" },
+    //     { value: "3", text: "Sala com Projetor" },
+    //     { value: "4", text: "Estúdio de Imagem" },
+    //     { value: "5", text: "Estúdio de Som" },
+    //     { value: "6", text: "Laboratório de Design" },
+    //     {value: "7", text: "Laboratório de Estética"}
+    //   ],
     };
   },
   methods: {
@@ -196,7 +197,7 @@ export default {
         alert("erro ao consultar");
       }
     },
-    async carregaUsuarios(){
+    async carregaSalasTipo(){
       let response = await this.$http.get(`${this.$baseUrl}/salas/tipo/`);
       response.data.items.forEach(element => {
           this.sala.push({
@@ -234,7 +235,7 @@ export default {
     }
   },
   async mounted() {
-    await this.carregaUsuarios()
+    await this.carregaSalasTipo()
   },
 };
 </script>
