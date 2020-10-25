@@ -11,16 +11,14 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          {{$route.name.toUpperCase() }}
+          {{ $route.name.toUpperCase() }}
           <small>{{ $route.meta.description }}</small>
         </h1>
         <ol class="breadcrumb">
           <li>
-            <a href="javascript:;">
-              <i class="fa fa-home"></i>Home
-            </a>
+            <a href="javascript:;"> <i class="fa fa-home"></i>Home </a>
           </li>
-          <li class="active">{{$route.name.toUpperCase()}}</li>
+          <li class="active">{{ $route.name.toUpperCase() }}</li>
         </ol>
       </section>
 
@@ -37,23 +35,24 @@
 // import DashFooter from './layout/DashFooter'
 import DashHeader from "./layout/DashHeader";
 import Sidebar from "./layout/Sidebar";
-import UserMenu from './layout/UserMenu';
-import {isSignedIn} from '../auth'
+import UserMenu from "./layout/UserMenu";
+import { isSignedIn,get_usuario } from "../auth";
+import Vue from "vue";
 
 export default {
   name: "Dash",
   components: {
     DashHeader,
     Sidebar,
-    UserMenu
+    UserMenu,
   },
-  data: function() {
+  data: function () {
     return {
       // section: 'Dash',
       classes: {
         fixed_layout: "",
-        hide_logo: ""
-      }
+        hide_logo: "",
+      },
     };
   },
   computed: {
@@ -61,23 +60,30 @@ export default {
       return {
         displayName: "",
         avatar: "",
-        roles: ""
+        roles: "",
       };
-    }
+    },
   },
-  methods:{
-    async authenticate(){
+  methods: {
+    async authenticate() {
       let valida = await isSignedIn(this.$baseUrl);
-      if(!valida)this.$router.push('/login')
-    }
+      if (!valida) this.$router.push("/login");
+      
+    },
+    async Usuario() {
+        let response = await get_usuario(this.$baseUrl);
+        Vue.prototype.$usuario_logado = { ...response };
+        // console.log(this.$usuario_logado);
+    },
   },
-  async mounted(){
-    await this.authenticate()
-  }
+  async mounted() {
+    await this.Usuario();
+    await this.authenticate();
+    
+  },
 };
 </script>
 <style>
-
 .wrapper.fixed_layout .main-header {
   position: fixed;
   width: 100%;

@@ -12,7 +12,7 @@
       tag="li"
       class="pageLink"
       to="/usuario"
-      v-if="usuario.funcao == 4"
+      v-if="usuario.id_funcao == 4"
     >
       <a>
         <i class="fa fa-address-card"></i>
@@ -40,23 +40,19 @@ export default {
   name: "SidebarMenu",
   data: () => {
     return {
-      usuario: {
-        funcao: "",
-      },
+      usuario: {},
     };
   },
   methods: {
     async get_usuario() {
-      let response = await this.$http.get(
-        `${this.$baseUrl}/usuario/token/`,
-        {}
-      );
-      let data = response.data;
-      this.usuario.funcao = data.id_funcao;
+      this.usuario = {
+        ...this.$usuario_logado,
+      };
+      if(!this.usuario){}; 
     },
   },
   async mounted() {
-      await this.get_usuario()
+    await this.get_usuario();
   },
 };
 </script>

@@ -62,7 +62,7 @@ export async function get_usuario(url){
         'x-access-token':token
     }});
     let data = response.data
-    console.log(data)
+    // console.log(data)
     return data
     
 }

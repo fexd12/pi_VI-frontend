@@ -2,7 +2,7 @@
   <section class="content app">
     <!-- Info boxes -->
     <!-- <div id="Limpeza"> -->
-    <IconsDash v-model="usuario" />
+    <IconsDash />
     <hr />
     <div>
       <h4 class="titulo-dashboard">Agendamentos do Usuário</h4>
@@ -59,7 +59,6 @@
 
 <script>
 import TableSalas from "../widgets/TableSalas";
-import {get_usuario} from '../../auth';
 import IconsDash from '../widgets/IconsDash';
 
 export default {
@@ -70,11 +69,11 @@ export default {
   },
   data: () => {
     return {
-      usuario: {
-        soma:''
-      },
+      filter: null,
       filterOn: [],
-
+      currentPage: 1,
+      perPage: 4,
+      total: 0,
       ativos:[],
       sala :[],
       fields: [
@@ -106,42 +105,6 @@ export default {
     };
   },
   methods: {
-    // async carregaUsuarios() {
-    //   let dados = await this.$http.get(`${this.$baseUrl}/users/all/`, {});
-    //   this.usuarios.soma = dados.data;
-    // },
-    // async carregaTags() {
-    //   let dados = await this.$http.get(`${this.$baseUrl}/tag/all/`, {});
-    //   this.tags.soma = dados.data;
-    // },
-    // async carregaSala() {
-    //   let dados = await this.$http.get(`${this.$baseUrl}/salas/`, {});
-    //   this.salas.push(...dados.data);
-    //   this.salas.splice(0, 1);
-    //   // console.log(this.salas);
-    // },
-    async Usuario(){
-        let response = await get_usuario(this.$baseUrl);
-        this.usuario ={
-            ...response
-        }
-        console.log(this.usuario)
-    },
-    async get_usuario() {
-      let response = await this.$http.get(
-        `${this.$baseUrl}/usuario/token/`,
-        {}
-      );
-      let data = response.data;
-      this.usuario.funcao = data.id_funcao;
-    },
-    async get_limpeza() {
-      let response = await this.$http.get(
-        `${this.$baseUrl}/usuario/limpeza`,
-        {}
-      );
-      this.limpeza.soma = response.data;
-    },
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
@@ -166,9 +129,7 @@ export default {
   },
   computed: {},
   async mounted() {
-    await this.get_usuario();
     await this.carregaAgendamento();
-    await this.get_limpeza();
   },
 };
 </script>
