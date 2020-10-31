@@ -85,9 +85,7 @@ export default {
   },
   data: () => {
     return {
-      usuario: {
-        funcao: 4,
-      },
+      usuario: {},
       ativoAtual: {
         id_sala: "",
         numero: "",
@@ -121,6 +119,11 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
+    async get_usuario() {
+      this.usuario = {
+        ...this.$store.getters.get_usuario_logado,
+      };
+    },
     
     async carregaTabela() {
       this.ativos.splice(0, this.ativos.length);
@@ -152,6 +155,7 @@ export default {
     },
   },
   async mounted() {
+    await this.get_usuario();
     await this.carregaTabela();
   },
 };

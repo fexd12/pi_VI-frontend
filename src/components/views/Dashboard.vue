@@ -110,7 +110,7 @@ export default {
       this.currentPage = 1;
     },
     async carregaAgendamento() {
-      let dados = await this.$http.get(`${this.$baseUrl}/agendamento/`, {});
+      let dados = await this.$http.get(`${this.$baseUrl}/agendamento/`);
       this.ativos.push(...dados.data.items);
       this.total = this.ativos.length;
     },

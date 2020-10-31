@@ -227,7 +227,7 @@ export default {
   },
   methods: {
 	async Usuario() {
-	  this.content = { ...this.$usuario_logado };
+	  this.content = { ...this.$store.getters.get_usuario_logado };
 	},
 	async get_limpeza() {
 	  let response = await this.$http.get(

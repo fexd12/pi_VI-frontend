@@ -146,7 +146,7 @@ export default {
   methods: {
     async get_usuario() {
       this.ativoAtual = {
-        ...this.$usuario_logado,
+        ...this.$store.getters.get_usuario_logado,
       };
     },
     async reset_password() {
