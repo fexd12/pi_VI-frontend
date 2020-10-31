@@ -7,16 +7,19 @@ import BootstrapVue from 'bootstrap-vue'
 import App from './components/App.vue'
 import routes from './router'
 import VueAxios from 'vue-axios'
+import Vuex from 'vuex'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import axios from 'axios'
+import store from './store'
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 Vue.use(VueAxios,axios)
+Vue.use(Vuex)
 
 Vue.prototype.$baseUrl = "http://localhost:2000";
 Vue.axios.defaults.headers.common['x-access-token'] = localStorage.getItem('token');
@@ -37,5 +40,6 @@ var router = new VueRouter({
 new Vue({
   el: '#root',
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

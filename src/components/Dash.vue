@@ -36,8 +36,7 @@
 import DashHeader from "./layout/DashHeader";
 import Sidebar from "./layout/Sidebar";
 import UserMenu from "./layout/UserMenu";
-import { isSignedIn,get_usuario } from "../auth";
-import Vue from "vue";
+import { isSignedIn } from "../auth";
 
 export default {
   name: "Dash",
@@ -70,14 +69,8 @@ export default {
       if (!valida) this.$router.push("/login");
       
     },
-    async Usuario() {
-        let response = await get_usuario(this.$baseUrl);
-        Vue.prototype.$usuario_logado = { ...response };
-        // console.log(this.$usuario_logado);
-    },
   },
   async mounted() {
-    await this.Usuario();
     await this.authenticate();
     
   },
