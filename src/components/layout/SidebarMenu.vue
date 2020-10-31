@@ -46,9 +46,8 @@ export default {
   methods: {
     async get_usuario() {
       this.usuario = {
-        ...this.$store.getters.get_usuario_logado,
+        ...this.$store.getters.get_usuario_logado
       };
-      if(!this.usuario){}; 
     },
   },
   async mounted() {

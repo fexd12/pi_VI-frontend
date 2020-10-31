@@ -17,6 +17,8 @@
 <script>
 import { signIn, isSignedIn } from "../auth";
 
+import Vue from 'vue'
+
 export default {
   name: "Auth",
   data: function () {
@@ -33,14 +35,16 @@ export default {
         let result = await signIn(this.$baseUrl, this.user.email, this.user.password);
         // console.log(result)
         if (result.success && Object.keys(result).includes("token")) {
-            this.$router.push("/dashboard");
+            Vue.axios.defaults.headers.common['x-access-token'] = localStorage.getItem('token');
+            this.$store.dispatch('get_usuario',`${this.$baseUrl}/usuario/token/`);
+            this.$router.push("/");
         } else {
             alert("Usuario ou senha Incorretos");
         }
     },
     async authenticate(){
         let signed = await isSignedIn(this.$baseUrl);
-        if(signed) this.$router.push('/dashboard')
+        if(signed) this.$router.push('/')
     }
   },
   async mounted() {
