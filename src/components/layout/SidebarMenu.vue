@@ -44,14 +44,14 @@ export default {
     };
   },
   methods: {
-    async get_usuario() {
-      this.usuario = {
+    get_usuario() {
+        this.usuario = {
         ...this.$store.getters.get_usuario_logado
       };
     },
   },
-  async mounted() {
-    await this.get_usuario();
+  mounted() {
+    this.get_usuario();
   },
 };
 </script>

@@ -36,15 +36,14 @@ export default {
         // console.log(result)
         if (result.success && Object.keys(result).includes("token")) {
             Vue.axios.defaults.headers.common['x-access-token'] = localStorage.getItem('token');
-            this.$store.dispatch('get_usuario',`${this.$baseUrl}/usuario/token/`);
-            this.$router.push("/");
+            this.$router.push("/dashboard");
         } else {
             alert("Usuario ou senha Incorretos");
         }
     },
     async authenticate(){
         let signed = await isSignedIn(this.$baseUrl);
-        if(signed) this.$router.push('/')
+        if(signed) this.$router.push('/dashboard')
     }
   },
   async mounted() {

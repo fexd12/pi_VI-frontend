@@ -17,15 +17,16 @@
     "chart.js": "^2.9.3",
     "datatables.net": "^1.10.20",
     "datatables.net-bs": "^1.10.20",
-    "vue-gravatar": "1.2.1",
-    "vuex": "3.0.1",
     "hideseek": "^0.8.0",
     "luxon": "^1.23.0",
     "moment": "^2.25.3",
     "vue": "^2.5.2",
     "vue-axios": "^2.1.5",
     "vue-datetime": "^1.0.0-beta.11",
+    "vue-gravatar": "1.2.1",
     "vue-router": "^3.0.1",
+    "vuex": "3.0.1",
+    "vuex-persistedstate": "^4.0.0-beta.1",
     "weekstart": "^1.0.1"
   },
   "devDependencies": {

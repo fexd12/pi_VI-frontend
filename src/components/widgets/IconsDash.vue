@@ -65,7 +65,7 @@
             </span>
             <div class="info-box-content">
               <span :class="'text'"> {{ "Funcionarios Cadastrados" }} </span>
-              <span :class="'info-box-number'">{{ teste }}</span>
+              <span :class="'info-box-number'">{{ usuarios.soma }}</span>
             </div>
           </div>
         </template>
@@ -228,7 +228,6 @@
 </template>
 
 <script>
-import { get_usuario } from "../../auth";
 import UsuarioVue from "../views/Usuario.vue";
 import SalasManutencao from "../widgets/SalasManutencao";
 
@@ -243,7 +242,6 @@ export default {
       limpeza: {
         soma: "",
       },
-      teste: "",
       usuarios: {
         soma: "",
       },
@@ -259,8 +257,8 @@ export default {
     };
   },
   methods: {
-	async Usuario() {
-	  this.content = { ...this.$store.getters.get_usuario_logado };
+	Usuario() {
+        this.content = { ...this.$store.getters.get_usuario_logado };
 	},
 	async get_limpeza() {
 	  let response = await this.$http.get(
@@ -302,7 +300,7 @@ export default {
     },
   },
   async mounted() {
-    await this.Usuario();
+    this.Usuario();
     await this.get_limpeza();
     await this.get_funcionarios();
     await this.get_salas_alugadas();

@@ -21,10 +21,12 @@ Vue.use(BootstrapVue)
 Vue.use(VueAxios,axios)
 Vue.use(Vuex)
 
-Vue.prototype.$baseUrl = "http://localhost:2000";
+let url = "http://localhost:2000"
+Vue.prototype.$baseUrl = url ;
 Vue.axios.defaults.headers.common['x-access-token'] = localStorage.getItem('token');
 Vue.axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
+store.dispatch('get_usuario',`${url}/usuario/token/`);
 
 /* eslint-disable no-new */
 // eslint-disable-next-line no-new

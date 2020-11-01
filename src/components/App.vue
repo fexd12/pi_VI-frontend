@@ -8,13 +8,6 @@
 export default {
   name: "App",
     methods:{
-        async Usuario(){
-            this.$store.dispatch('get_usuario',`${this.$baseUrl}/usuario/token/`);
-            // console.log(this.$store.getters.get_usuario_logado);
-        }
-    },
-    async mounted(){
-        await this.Usuario();
     }
 };
 </script>
