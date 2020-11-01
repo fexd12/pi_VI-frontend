@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" v-if="usuario.funcao == 4">
+    <div class="container" v-if="usuario.id_funcao == 4">
       <b-button pill variant="primary" v-b-modal.criaSala>Nova Sala</b-button>
     </div>
 
@@ -121,7 +121,7 @@ export default {
     },
     async get_usuario() {
       this.usuario = {
-        ...this.$store.getters.get_usuario_logado,
+        ...this.$store.getters.get_usuario_logado
       };
     },
     
