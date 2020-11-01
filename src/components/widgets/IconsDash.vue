@@ -54,7 +54,7 @@
 			</span>
 			<div class="info-box-content">
 			  <span :class="'text'">{{ "Funcionarios Cadastrados" }}</span>
-			  <span :class="'info-box-number'">{{ teste }}</span>
+			  <span :class="'info-box-number'">{{ usuarios.soma }}</span>
 			</div>
 		  </div>
 		</template>
@@ -234,11 +234,45 @@ export default {
 		`${this.$baseUrl}/usuario/limpeza`,
 		{}
 	  );
-	  return response.data;
-	},
+      this.limpeza.soma = response.data.usuario;
+    },
+    async get_funcionarios() {
+	  let response = await this.$http.get(
+		`${this.$baseUrl}/usuario/all`,
+		{}
+      );
+      this.usuarios.soma = response.data.usuarios;
+    },
+    async get_salas_alugadas() {
+	  let response = await this.$http.get(
+		`${this.$baseUrl}/salas/alugada`,
+		{}
+      );
+      this.salas_alugadas.soma = response.data.salas;
+    },
+    async get_salas_manutencao() {
+	  let response = await this.$http.get(
+		`${this.$baseUrl}/salas/manutencao`,
+		{}
+      );
+      this.salas_manutencao.soma = response.data.salas;
+    },
+    async get_salas_disponiveis() {
+	  let response = await this.$http.get(
+		`${this.$baseUrl}/salas/disponivel`,
+		{}
+      );
+      this.salas_disponiveis.soma = response.data.salas - parseInt(this.salas_alugadas.soma) - parseInt(this.salas_manutencao.soma);
+    },
   },
   async mounted() {
-	await this.Usuario();
+    await this.Usuario();
+    await this.get_limpeza();
+    await this.get_funcionarios();
+    await this.get_salas_alugadas();
+    await this.get_salas_manutencao();
+    await this.get_salas_disponiveis();
+
   },
 
 };
