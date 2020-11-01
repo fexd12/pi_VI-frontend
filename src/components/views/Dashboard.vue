@@ -58,13 +58,12 @@
 </template>
 
 <script>
-import TableSalas from "../widgets/TableSalas";
+
 import IconsDash from '../widgets/IconsDash';
 
 export default {
   name: "Dashboard",
-  components: {
-    TableSalas,
+  components: { 
     IconsDash
   },
   data: () => {
