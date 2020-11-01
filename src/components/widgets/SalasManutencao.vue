@@ -3,6 +3,17 @@
     <main role="main" class="container">
       <div class="my-3 p-2 bg-white rounded shadow-xl">
         <div class="info-box-text">
+            <b-modal
+              id="Arrumado"
+              title="Confirmação de Calendamento"
+              ok-title="Confirmar"
+              cancel-title="Cancelar"
+              @ok="Arrumado"
+            >
+              <div>
+                <h5>Deseja mesmo cancelar o agendamento?</h5>
+              </div>
+            </b-modal>
           <b-table
             class="table table-bordered dataTable"
             hover
@@ -17,8 +28,8 @@
           >
             <template slot="cell(Arrumado)" slot-scope="{ item }">
               <b-button
-                class="btn bnt-success"
-                v-on:click="Arrumado(item)"
+                class="btn btn-success"
+                v-on:click="Save_Arrumado(item)"
                 v-b-modal.Arrumado
               >
                 <i class="fa fa-check"></i>
@@ -39,7 +50,6 @@
 <script>
 export default {
   name: "SalasManutecao",
-  props: ["value"],
   data: () => {
     return {
       filter:null,
@@ -50,24 +60,34 @@ export default {
       ativos: [],
       fields: [
         {
-          key: "id_sala",
-          label: "Salas",
+            key: "numero",
+            label: "Numero Sala",
         },
         {
-          key: "projetor",
-          label: "Projetor",
+            key: "projetor",
+            label: "Projetor",
+            formatter: (value, key, item) => {
+              return value ? 'Sim' : 'Não'
+            },
         },
         {
-          key: "ar_condicionado",
-          label: "Ar Condicionado",
+            key: "ar",
+            label: "Ar Condicionado",
+            formatter: (value, key, item) => {
+              return value ? 'Sim' : 'Não'
+            },
         },
         {
-          key: "computador",
-          label: "Computador",
+            key: "luzes",
+            label: "Luzes",
+            formatter: (value, key, item) => {
+              return value ? 'Sim' : 'Não'
+            },
         },
         {
             key: "Arrumado",
-            label:"Arrumado"
+            label:"Arrumado",
+            
         },
       ],
     };
@@ -79,14 +99,20 @@ export default {
     },
     async carregaTabela() {
       this.ativos.splice(0, this.ativos.length);
-      let dados = await this.$http.get(
-        `${this.$baseUrl}/agendamento/${this.content.id}`,
-        {}
-      );
-      this.ativos.push(...dados.data);
+      let dados = await this.$http.get(`${this.$baseUrl}/salas/status_manutencao`,{});
+      this.ativos.push(...dados.data.salas);
+    },
+    async Save_Arrumado(item){
+      this.arrumado.splice(0, this.arrumado);
+      this.arrumado.push(item);
     },
     async Arrumado(item){
-        // fazer felipe animal
+        try {
+            await this.$http.put(`${this.$baseUrl}/salas/sala_manutencao/`, this.arrumado[0]);
+            await this.carregaTabela();
+      } catch (error) {
+            alert("nao foi possivel excluir o agendamento");
+      }
     }
   },
   async mounted() {
