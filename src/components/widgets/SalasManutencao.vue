@@ -5,13 +5,13 @@
         <div class="info-box-text">
             <b-modal
               id="Arrumado"
-              title="Confirmação de Calendamento"
+              title="Confirmação de Conserto"
               ok-title="Confirmar"
               cancel-title="Cancelar"
               @ok="Arrumado"
             >
               <div>
-                <h5>Deseja mesmo cancelar o agendamento?</h5>
+                <h5>Tem certeza que sala está arrumada?</h5>
               </div>
             </b-modal>
           <b-table

@@ -14,7 +14,7 @@
     </div>
     <div class="user-dropdown-content">
       <router-link to="/perfil">
-        <i class="fa fa-cog"></i> Perfil
+        <i class="fa fa-user"></i> Perfil
       </router-link>
       <a href @click.prevent="logout">
         <i class="fa fa-sign-out"></i> Sair

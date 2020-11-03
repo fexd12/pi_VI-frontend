@@ -157,12 +157,19 @@ export default {
         nova_senha: 1,
       };
       try {
-        let response = await this.$http.post(
-          `${this.$baseUrl}/usuario/reset_password/`,
-          payload
-        );
+        await this.$http
+          .post(`${this.$baseUrl}/usuario/reset_password/`, payload)
+          .then((dados) => {
+            alert("Senha alterada com sucesso");
+            this.senha = "";
+            this.senha_nova = "";
+            this.senha_confirma = "";
+          });
       } catch (error) {
-        alert(error.message);
+        alert("usuario e/ou senha errado");
+        this.senha = "";
+        this.senha_nova = "";
+        this.senha_confirma = "";
       }
     },
   },

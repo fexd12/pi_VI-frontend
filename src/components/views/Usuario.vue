@@ -189,6 +189,7 @@ export default {
         await this.$http.post(`${this.$baseUrl}/usuario/reset_password/`,payload)
         .then(async request =>{
           await this.$http.post(`${this.$baseUrl}/email/`, {...payload,email:ativo.email,cadastro:2})
+          alert("Senha Resetada com sucesso")
         })
       } catch (error) {
         alert(error.message);
