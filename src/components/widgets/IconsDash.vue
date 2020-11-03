@@ -5,6 +5,7 @@
       id="editaAtivo"
       title="Manutenção"
       ok-title="Salvar"
+      @ok="get_salas_manutencao"
       cancel-title="Cancelar"
     >
       <SalasManutencao />

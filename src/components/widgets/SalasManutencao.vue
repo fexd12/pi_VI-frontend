@@ -58,6 +58,7 @@ export default {
       perPage: 4,
       total:0,
       ativos: [],
+      arrumado :[],
       fields: [
         {
             key: "numero",
@@ -103,15 +104,15 @@ export default {
       this.ativos.push(...dados.data.salas);
     },
     async Save_Arrumado(item){
-      this.arrumado.splice(0, this.arrumado);
+      this.arrumado.splice(0, this.arrumado.length);
       this.arrumado.push(item);
     },
     async Arrumado(item){
         try {
-            await this.$http.put(`${this.$baseUrl}/salas/sala_manutencao/`, this.arrumado[0]);
+            await this.$http.put(`${this.$baseUrl}/salas/sala_manutencao`, this.arrumado[0]);
             await this.carregaTabela();
       } catch (error) {
-            alert("nao foi possivel excluir o agendamento");
+            alert("Não foi possivel confirmar o conserto da sala");
       }
     }
   },
