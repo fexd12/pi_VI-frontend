@@ -290,10 +290,8 @@ export default {
         `${this.$baseUrl}/salas/disponivel`,
         {}
       );
-      this.salas_disponiveis.soma =
-        response.data.salas -
-        parseInt(this.salas_alugadas.soma) -
-        parseInt(this.salas_manutencao.soma);
+      salas =  response.data.salas -  parseInt(this.salas_alugadas.soma) - parseInt(this.salas_manutencao.soma);
+      this.salas_disponiveis.soma = salas < 0 ? 0 : salas
     },
     conserto_sala() {
       this.$root.$emit("bv::show::modal", "editaAtivo");
