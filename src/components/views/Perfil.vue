@@ -159,11 +159,12 @@ export default {
       try {
         await this.$http
           .post(`${this.$baseUrl}/usuario/reset_password/`, payload)
-          .then((dados) => {
+          .then( async (dados) => {
             alert("Senha alterada com sucesso");
             this.senha = "";
             this.senha_nova = "";
             this.senha_confirma = "";
+            await this.$http.post(`${this.$baseUrl}/email/`, {email:this.ativoAtual.email,cadastro:3})
           });
       } catch (error) {
         alert("usuario e/ou senha errado");
