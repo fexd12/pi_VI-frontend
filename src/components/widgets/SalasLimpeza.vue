@@ -65,18 +65,17 @@ export default {
               label: "Numero da Sala"
           }, 
           {
-              key: "sala limpa",
+              key: "limpa",
               label: "Sala limpa", 
               formatter: (value, key, item) => {
-                  return value ? 'Sim' : ''
+                  return value ? 'Não' : ''
               },
           },
           {
-              key: "limpada",
-              label: "Limpeza"
+              key: "Limpeza",
+              label: "Limpada"
           }
         
-            
       ],
     };
   },
@@ -87,6 +86,9 @@ export default {
     },
     async carregaTabela() {
       this.ativos.splice(0, this.ativos.length);
+      let dados = await this.$http.get(`${this.$baseUrl}/salas/status_limpeza`,{});
+      this.ativos.push(...dados.data.salas);
+
     },
     async Save_Limpeza(item){
       this.limpa.splice(0, this.limpa.length);
@@ -94,7 +96,7 @@ export default {
     },
     async Limpeza(item){
         try {
-            await this.$http.put(`${this.$baseUrl}/salas/status_limpeza/`, this.limpa[0]);
+            await this.$http.put(`${this.$baseUrl}/salas/sala_limpeza`, this.limpa[0]);
             await this.carregaTabela();
       } catch (error) {
             alert("Não foi possivel confirmar a limpeza da sala");

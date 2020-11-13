@@ -14,6 +14,7 @@
       size="xl"
       id="limpezaAtivo"
       title="Limpeza"
+      @ok="get_limpeza"
       ok-title="Salvar"
       cancel-title="Cancaler"
     >
@@ -292,7 +293,7 @@ export default {
         `${this.$baseUrl}/salas/limpeza`,
         {}
       );
-      this.limpeza.soma = response.data.usuario;
+      this.limpeza.soma = response.data.salas;
     },
     async get_funcionarios() {
       let response = await this.$http.get(`${this.$baseUrl}/usuario/all`, {});
@@ -309,19 +310,19 @@ export default {
       );
       this.salas_manutencao.soma = response.data.salas;
     },
-    async get_salas_limpeza(){
-        let response = await this.$http.get(
-        `${this.$baseUrl}/salas/limpeza`,
-        {}
-      );
-      this.salas_limpeza.soma = response.data.salas;
-    },
+    // async get_salas_limpeza(){
+    //     let response = await this.$http.get(
+    //     `${this.$baseUrl}/salas/limpeza`,
+    //     {}
+    //   );
+    //   this.salas_limpeza.soma = response.data.salas;
+    // },
     async get_salas_disponiveis() {
       let response = await this.$http.get(
         `${this.$baseUrl}/salas/disponivel`,
         {}
       );
-      salas =  response.data.salas -  parseInt(this.salas_alugadas.soma) - parseInt(this.salas_manutencao.soma);
+      let salas =  response.data.salas -  parseInt(this.salas_alugadas.soma) - parseInt(this.salas_manutencao.soma);
       this.salas_disponiveis.soma = salas < 0 ? 0 : salas
     },
     conserto_sala() {
