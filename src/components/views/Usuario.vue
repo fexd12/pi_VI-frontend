@@ -131,6 +131,10 @@ export default {
           label: "Tag"
         },
         {
+            key: "funcao",
+            label: "Função"
+        },
+        {
           key: "acesso",
           label: "Acesso"
         },
