@@ -27,7 +27,7 @@
       </a>
     </router-link>
 
-    <router-link tag="li" class="pageLink" to="/agendamento">
+    <router-link tag="li" class="pageLink" to="/agendamento" v-if="usuario.id_funcao == 1">
       <a>
         <i class="fa fa-calendar"></i>
         <span class="page">Agendamento</span>
