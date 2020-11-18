@@ -24,16 +24,16 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import Gravatar from "vue-gravatar";
+import {signOut} from '../../auth'
 export default {
   name: "UserMenu",
   components: { Gravatar },
   props: ["user"],
   methods: {
     logout() {
-      localStorage.removeItem("token");
-      this.$router.push("/login");
+        signOut()
+        this.$router.push("/login");
     },
   },
 };
