@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from './store'
 
 export async function signIn(url, email, senha) {
   const token = await axios.post(`${url}/login/`, {
@@ -10,6 +11,7 @@ export async function signIn(url, email, senha) {
   if (Object.keys(token.data).includes("token") && token.data.success) {
     localStorage.setItem("token", token.data.token);
     localStorage.setItem("user", token.data.user);
+    store.dispatch('get_usuario',`${url}/usuario/token/`);
     return token.data;
   } else {
     return token.data;
