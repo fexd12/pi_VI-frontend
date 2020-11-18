@@ -21,6 +21,7 @@ export async function signIn(url, email, senha) {
 export function signOut() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
+  store.dispatch('set_usuario','');
 }
 
 export async function isSignedIn(url) {

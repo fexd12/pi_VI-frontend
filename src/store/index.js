@@ -25,6 +25,9 @@ const store = new Vuex.Store({
             request.get(payload).then(res=>{
                 commit('setUsuario',res.data)
             })
+        },
+        set_usuario({commit},payload){
+                commit('setUsuario',payload)
         }
     }
 
